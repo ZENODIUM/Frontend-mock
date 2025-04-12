@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduthalamus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+                @font-face {
+    font-family: 'dessau';
+    src: url('fonts/Dessau Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+}
+
+.modal {
+    border: 0.629px solid #1D3557;
+    background: #FFF;
+    display: inline-flex;
+    height: 501px;
+    padding: 50.289px 47.146px 0px 47.146px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+    width: 90%;
+    max-width: 500px;
+}
+
+
+.modal h2 {
+    color: #000;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 34.573px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    color: #000;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 10.058px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 30px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #717171;
+}
+
+.demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.demo-form input {
+    border-radius: 5.029px;
+    border: 0.314px solid #B6B6B6;
+    background: #FFF;
+    box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
+    padding: 15px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.demo-form button {
+    border-radius: 5.029px;
+    border: 0.314px solid #C4C4C4;
+    background: #1D3557;
+    box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
+    color: white;
+    padding: 15px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.demo-form button:hover {
+    background-color: #162841;
+}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: #1C1C1C;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: #E63946;;
+    transition: width 0.4s ease, left 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: #E63946;;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.request-demo {
+            display: flex;
+            width: 148px;
+            padding: 9.705px 6.47px;
+            justify-content: center;
+            align-items: center;
+            gap: 8.087px;
+            border-radius: 4.044px;
+            border: 1.617px solid #2D2D96;
+            background-color: transparent;
+            color: #2D2D96;
+            text-decoration: none;
+            transition: all 0.3s;
+font-family: "Open Sans";
+font-size: 12.94px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+        }
+
+
+        .request-demo:hover {
+            background-color: #2D2D96;
+            color: white;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: url('whyus_bg.jpeg') center/cover;
+            background-color: rgba(245, 245, 245, 0.8);
+            background-blend-mode: overlay;
+            display: flex;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .hero-right {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            max-width: 550px;
+        }
+
+        .hero-left {
+            flex: 1;
+      
+            position: absolute;
+            bottom: 20%;
+            left: 5%;
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            color: #1D3557;
+font-family: Manrope;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .hero-button {
+  /* Existing button styles */
+  display: flex;
+  width: 150px;
+  height: 48px;
+  padding: 2px 2px 2px 21px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #ff4757;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+  transition: all 0.3s;
+  /* Add border to visualize the container */
+  border: 2px solid #ff4757;
+}
+
+.button-text {
+    font-family: "Open Sans";
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s 0.1s;
+}
+
+.circle {
+  position: absolute;
+  right: -4px;
+  width: 54px;
+  height: 54px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  /* Initial gap */
+  box-shadow: inset 0 0 0 4px #ff4757;
+}
+
+
+.arrow {
+    left: 26px;
+    color: #ff4757;
+    z-index: 2; /* Same as button-text */
+    position: relative;
+}
+.hero-button:hover .circle {
+  /* Expand to fill width/height with 4px gap */
+  width: calc(100% + 6px);
+  height: calc(100% + 2px);
+  border-radius: 50px; /* Slightly less than button's radius */
+  /* right: 4px;
+  top: 4px; */
+  /* Maintain gap */
+  box-shadow: inset 0 0 0 2px #ff4757;
+}
+
+.hero-button:hover .button-text {
+  color: #ff4757;
+}
+        .hero-button svg {
+            margin-left: 0;
+            vertical-align: middle;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            width: 44px;
+            height: 44px;
+            stroke: #ff4757;
+        }
+
+        .automation-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .automation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .automation-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .automation-heading h2 {
+            font-size: 2.5rem;
+            color: #1e3a5f;
+            margin-bottom: 15px;
+        }
+
+        .automation-heading p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .why-choose-section {
+            padding: 100px 0;
+            background-color: #f8f8fa;
+        }
+
+        .why-choose-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .why-choose-heading {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .why-choose-heading h2 {
+            color: #1D3557;
+font-family: Manrope;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+        }
+
+        .why-choose-intro {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .why-choose-intro p {
+            color: rgba(29, 53, 87, 0.80);
+text-align: center;
+font-family: "Open Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 133.333% */
+
+        }
+
+
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            border-radius: 20px;
+border: 0.5px solid rgba(29, 53, 87, 0.30);
+background: #FFF;
+box-shadow: -3px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            width: calc(33.333% - 20px);
+            min-width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+
+
+        .feature-icon {
+            margin-bottom: 20px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon img {
+            max-height: 90%;
+            max-width: 90%;
+            object-fit: contain;
+        }
+
+        .feature-title {
+            color: #E63946;
+text-align: center;
+font-family: "Open Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px; /* 133.333% */
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .feature-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.30);
+        }
+
+        .feature-description {
+            color: #1D3557;
+text-align: center;
+font-family: "Open Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+        }
+
+        .feature-grid-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 0;
+        }
+
+        .feature-card-wide {
+            width: calc(50% - 15px);
+            min-width: 300px;
+        }
+
+        .results-section {
+            padding: 100px 0;
+            background-color: #f2f9f2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .results-left {
+            flex: 1.8;
+            min-width: 300px;
+            padding-right: 120px;
+            margin-bottom: 40px;
+            max-width: 75%;
+        }
+
+        .results-right {
+            flex: 0.5;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 35%;
+            margin-left: auto;
+            padding-right: 0;
+            position: relative;
+            right: 0;
+        }
+
+        .results-heading {
+            color: #1D3557;
+font-family: Manrope;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom: 40px;
+        }
+
+        .results-subheading {
+            color: #425466;
+font-family: "Open Sans";
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px; /* 133.333% */
+margin-bottom: 30px;
+        }
+
+        .results-subheading span.highlight-blue {
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .results-subheading span.highlight-teal {
+            color: #00a4bd;
+        }
+
+        .results-subheading span.highlight-purple {
+            color: #6747c7;
+            font-style: italic;
+        }
+
+        .connect-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ff4757;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-content h3 {
+            color: var(--Theme-Dark-Default, #16192C);
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: 136.023%; /* 21.764px */
+        }
+
+        .benefit-content p {
+            color: var(--Text-Body-Light, #425466);
+font-feature-settings: 'salt' on;
+font-family: "Open Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+margin-bottom: 20px;
+        }
+
+       
+        footer {
+            background-color: #fff;
+            padding: 50px 0 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-container {
+            width:100%;
+            margin: 0 auto;
+    
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-center {
+            margin-left: 69px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0066cc;
+        }
+
+        .footer-certification {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .iso-text {
+            color: #000;
+font-family: "Open Sans";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            color: rgba(0, 0, 0, 0.50);
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .hero-left, .hero-right {
+                position: relative;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                left: auto;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .hero-right {
+                margin-bottom: 50px;
+            }
+
+            .feature-card {
+                width: calc(50% - 15px);
+            }
+            
+            .feature-card-wide {
+                width: 100%;
+            }
+            
+            .results-left, .results-right {
+                flex: 100%;
+                min-width: 100%;
+                padding: 0 10px;
+            }
+            
+            .results-left {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            .results-subheading {
+                max-width: 100%;
+                margin: 0 auto 20px;
+            }
+            
+            .footer-left, .footer-right {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                width: 100%;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .benefit-content {
+                text-align: center;
+            }
+            
+            .footer-left {
+                flex-direction: column;
+            }
+            
+            .footer-logo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+
+        .hero-right h1 {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.6s ease, transform 1.5s ease;
+}
+
+.hero-right h1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.hero-left p {
+    color: #1D3557;
+font-family: "Open Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 133.333% */
+transform: translateY(30px);
+transition: opacity 0.6s ease, transform 1.5s ease;
+}
+
+.hero-left p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 1.5s ease;
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.benefit-item {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 1.5s ease;
+}
+
+.benefit-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="demoModal">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h2>Book a Demo</h2>
+            <p>Get a peek into the future of school management.</p>
+            <form class="demo-form" id="demoForm">
+                <div class="form-row">
+                    <input type="text" placeholder="Name" required>
+                    <input type="tel" placeholder="Phone No." required>
+                </div>
+                <input type="email" placeholder="Email I'd" required>
+                <input type="text" placeholder="Institution Name" required>
+                <button type="submit">Request Demo</button>
+            </form>
+        </div>
+    </div>
+
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="whyus.html">Why us?</a>
+            <a href="features.html">Features</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="#demo" class="request-demo">Request Demo →</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-right">
+                <h1>Is Your School Management Keeping Up with the Future?</h1>
+                <a href="#learn-more" class="hero-button">
+                    <span class="button-text">Learn More <span class="arrow">→</span></span>
+                    <span class="circle"></span>
+                  </a>
+            </div>
+            <div class="hero-left">
+                <p><span style="font-weight: 600;">Eduthalamus</span> redefines school operations with advanced automation and intelligent workflows. From seamless admissions to AI-driven fee management, our ERP system simplifies processes, reduces errors, and delivers real-time insights—empowering your institution to stay ahead in the digital age.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="why-choose-section">
+        <div class="why-choose-container">
+            <div class="why-choose-heading">
+                <h2>So, Why Choose us?</h2>
+            </div>
+            <div class="why-choose-intro">
+                <p>At <span style="color: #0492DA;
+                    font-family: Open Sans;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px;">Edu</span><span style="color: #2D2D96;
+                    font-family: Open Sans;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px;">thalamus</span>, we go beyond just school management—we empower institutions with cutting-edge AI, automation, and cloud-based solutions to streamline operations and enhance learning experiences. With a proven track record in transforming educational institutions, we're the go-to solution for modern, data-driven administration.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="whyus_logo1.png" alt="Unified Management">
+                    </div>
+                    <h3 class="feature-title">Unified Management</h3>
+                    <p class="feature-description">No more scattered data! Our platform integrates academic, administrative, and financial processes into one seamless system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="whyus_logo2.png" alt="AI-Powered Automation">
+                    </div>
+                    <h3 class="feature-title">AI-Powered Automation</h3>
+                    <p class="feature-description">Automate routine tasks with custom workflows, reducing manual effort and errors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="whyus_logo3.png" alt="24/7 Access">
+                    </div>
+                    <h3 class="feature-title">24/7 Access</h3>
+                    <p class="feature-description">Round-the-clock availability for students, staff, and administrators, ensuring flexibility and efficiency.</p>
+                </div>
+            </div>
+            <div class="feature-grid-bottom">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="whyus_logo4.png" alt="Best Practices Compliance">
+                    </div>
+                    <h3 class="feature-title">Best Practices Compliance</h3>
+                    <p class="feature-description">Built on industry-leading standards, ensuring smooth operations and data security.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="whyus_logo5.png" alt="Scalable and Future Ready">
+                    </div>
+                    <h3 class="feature-title">Scalable and Future Ready</h3>
+                    <p class="feature-description">Whether you're managing a single school or a large institution, our cloud-based solution grows with you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <div class="results-container">
+            <div class="results-left">
+                <h2 class="results-heading">The Results Speak for Themselves!</h2>
+                <p class="results-subheading">Experience the future of school management with <span style="color: #0492DA;
+                    font-family: Open Sans;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 32px;">Edu</span><span style="color: #2D2D96;
+font-family: Open Sans;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 32px;">thalamus</span>, where <span style="color: #0492DA;
+font-family: Dessau;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px;">innovation</span> meets <span style="color: #2D2D96;
+font-family: Dessau;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px;">education</span>!</p>
+            
+                <a href="#learn-more" class="hero-button">
+                    <span class="button-text">Let's Connect<span class="arrow" style="left: 20px;">→</span></span>
+                    <span class="circle"></span>
+                  </a>
+            </div>
+            <div class="results-right">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <img src="whyus_icon1.png" alt="Cost-Efficient">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Cost-Efficient</h3>
+                        <p>Lower operational costs while boosting productivity.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+<img src="whyus_icon2.png" alt="Cost-Efficient">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Seamless Collaboration</h3>
+                        <p>Enhance communication between departments, staff, and students.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+<img src="whyus_icon3.png" alt="Cost-Efficient">
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Proven Success</h3>
+                        <p>Trusted by 1.5 million students across 300 institutions worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+       <div class="logo">
+            <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
+        </div>
+            </div>
+            
+            <div class="footer-center">
+                <div class="nav-links" style="margin-bottom:20px;">
+                    <a href="index.html">Home</a>
+                    <a href="whyus.html">Why us?</a>
+                    <a href="features.html">Features</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-bottom">
+                    © 2025 All Rights Reserved
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="footer-certification">
+                    <img src="iso.png" alt="ISO 27001:2022 Certified" style="height: 60px;">
+                    <div class="iso-text">An ISO 27001:2022 Certified Company</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const heroHeading = document.querySelector(".hero-right h1");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    if (heroHeading) {
+      observer.observe(heroHeading);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const heroParagraph = document.querySelector(".hero-left p");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    if (heroParagraph) {
+      observer.observe(heroParagraph);
+    }
+  });
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const featureCards = document.querySelectorAll(".feature-card");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          card.style.transitionDelay = `${index * 0.5}s`; // 0.2s stagger between cards
+          card.classList.add("visible");
+          observer.unobserve(card); // optional: stop observing once animated
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    featureCards.forEach((card) => {
+      observer.observe(card);
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const benefitItems = document.querySelectorAll(".benefit-item");
+
+    const benefitObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const item = entry.target;
+          item.style.transitionDelay = `${index * 0.3}s`; // Adjust delay per item
+          item.classList.add("visible");
+          benefitObserver.unobserve(item);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    benefitItems.forEach((item) => {
+      benefitObserver.observe(item);
+    });
+  });
+</script>
+
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('demoModal');
+            const demoButtons = document.querySelectorAll('.request-demo');
+            const closeButton = document.querySelector('.modal-close');
+            const demoForm = document.getElementById('demoForm');
+
+            // Open modal when demo buttons are clicked
+            demoButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            // Close modal when close button is clicked
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle form submission
+            demoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for your interest! We will contact you soon.');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                demoForm.reset();
+            });
+        });
+    </script>
+</html> 

@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduthalamus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body { 
+            background-color: #f9f9f9;
+        }
+
+
+        .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+}
+
+.modal {
+    border: 0.629px solid #1D3557;
+    background: #FFF;
+    display: inline-flex;
+    height: 501px;
+    padding: 50.289px 47.146px 0px 47.146px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+    width: 90%;
+    max-width: 500px;
+}
+
+
+.modal h2 {
+    color: #000;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 34.573px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    color: #000;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 10.058px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 30px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #717171;
+}
+
+.demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.demo-form input {
+    border-radius: 5.029px;
+    border: 0.314px solid #B6B6B6;
+    background: #FFF;
+    box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
+    padding: 15px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.demo-form button {
+    border-radius: 5.029px;
+    border: 0.314px solid #C4C4C4;
+    background: #1D3557;
+    box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
+    color: white;
+    padding: 15px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.demo-form button:hover {
+    background-color: #162841;
+}
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: #1C1C1C;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: #E63946;;
+    transition: width 0.4s ease, left 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: #E63946;;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.request-demo {
+            display: flex;
+            width: 148px;
+            padding: 9.705px 6.47px;
+            justify-content: center;
+            align-items: center;
+            gap: 8.087px;
+            border-radius: 4.044px;
+            border: 1.617px solid #2D2D96;
+            background-color: transparent;
+            color: #2D2D96;
+            text-decoration: none;
+            transition: all 0.3s;
+font-family: "Open Sans";
+font-size: 12.94px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+        }
+
+        .request-demo:hover {
+            background-color: #2D2D96;
+            color: white;
+        }
+
+        .hero-section {
+            padding: 150px 0 80px;
+            background-color: #f5fbf5;
+            min-height: calc(100vh);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-left {
+            flex: 1;
+            min-width: 750px;
+        }
+
+        .hero-heading {
+color: #1D3557;
+font-family: Manrope;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom: 20px;
+        }
+
+        .hero-heading span {
+            color: #4834d4;
+        }
+
+        .hero-subheading {
+            color: #1D3557;
+font-family: "Open Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; /* 155.556% */
+            margin-bottom: 30px;
+           
+        }
+
+        .hero-button {
+  /* Existing button styles */
+  display: flex;
+  width: 150px;
+  height: 48px;
+  padding: 2px 2px 2px 21px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #ff4757;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+  transition: all 0.3s;
+  /* Add border to visualize the container */
+  border: 2px solid #ff4757;
+}
+
+.button-text {
+    font-family: "Open Sans";
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s 0.1s;
+}
+
+.circle {
+  position: absolute;
+  right: -4px;
+  width: 54px;
+  height: 54px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  /* Initial gap */
+  box-shadow: inset 0 0 0 4px #ff4757;
+}
+
+
+.arrow {
+    left: 26px;
+    color: #ff4757;
+    z-index: 2; /* Same as button-text */
+    position: relative;
+}
+.hero-button:hover .circle {
+  /* Expand to fill width/height with 4px gap */
+  width: calc(100% + 6px);
+  height: calc(100% + 2px);
+  border-radius: 50px; /* Slightly less than button's radius */
+  /* right: 4px;
+  top: 4px; */
+  /* Maintain gap */
+  box-shadow: inset 0 0 0 2px #ff4757;
+}
+
+.hero-button:hover .button-text {
+  color: #ff4757;
+}
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .features-cards {
+            padding: 20px 0;
+            background-color: #f1e6f2;
+            position: relative;
+        }
+
+        .cards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5px;
+            position: relative;
+        }
+
+     /* Update the cards-grid to align left */
+.cards-grid {
+    padding: 10vh 0;
+    position: relative;
+    margin-left: -5%; /* Add left margin to start from left */
+}
+
+/* Update the feature-card positioning */
+.feature-card {
+    background-color: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 860px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 280px;
+    margin: 0 0 30vh 0; /* Remove auto margin to prevent centering */
+    position: sticky;
+    top: 20vh;
+    transform: translateX(calc(var(--index) * 20px));
+    z-index: var(--index);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:nth-child(1) { --index: 1; left: 0; }
+.feature-card:nth-child(2) { --index: 2; left: 20px; } /* Changed from 40px */
+.feature-card:nth-child(3) { --index: 3; left: 40px; } /* Changed from 80px */
+.feature-card:nth-child(4) { --index: 4; left: 60px; } /* Changed from 120px */
+.feature-card:nth-child(5) { --index: 5; left: 80px; } /* Changed from 160px */
+.feature-card:nth-child(6) { --index: 6; left: 100px; } /* Changed from 200px */
+.feature-card:nth-child(7) { --index: 7; left: 120px; } /* Changed from 240px */
+.feature-card:nth-child(8) { --index: 8; left: 140px; } /* Changed from 280px */
+
+/* Add hover effect to highlight the top card */
+.feature-card:hover {
+    transform: translateX(calc(var(--index) * 20px)) translateY(-5px); /* Changed from 40px */
+}
+.card-img {
+    background-color: #e8effd;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove padding */
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.card-img img {
+    width: 100%; /* Make image fill container width */
+    height: 100%; /* Make image fill container height */
+    object-fit: cover; /* Change from 'contain' to 'cover' */
+    object-position: center; /* Center the image within the container */
+}
+
+        .card-content {
+            width: 55%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+color: #1D3557;
+font-family: Manrope;
+font-size: 31px;
+font-style: normal;
+font-weight: 800;
+line-height: 136.687%; /* 42.373px */
+margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #1D3557;
+font-family: "Open Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 50px 0 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-container {
+            width:100%;
+            margin: 0 auto;
+    
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-center {
+            margin-left: 69px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0066cc;
+        }
+
+        .footer-certification {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .iso-text {
+            color: #000;
+font-family: "Open Sans";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            color: rgba(0, 0, 0, 0.50);
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+            text-align: center;
+        }
+
+
+        @media (max-width: 992px) {
+            .feature-card {
+                flex-direction: column;
+                width: 90%;
+                height: auto;
+            }
+            
+            .card-img, .card-content {
+                width: 100%;
+            }
+            
+            .card-img {
+                min-height: 180px;
+            }
+            
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-heading {
+                font-size: 2.8rem;
+            }
+
+            .footer-left, .footer-right {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-heading {
+                font-size: 2.3rem;
+            }
+
+            .footer-left {
+                flex-direction: column;
+            }
+            
+            .footer-logo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+
+
+
+
+
+        @keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes growIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-heading,
+.hero-subheading {
+  opacity: 0;
+  animation: fadeInLeft 1s ease forwards;
+}
+
+.hero-subheading {
+  animation-delay: 0.3s;
+}
+
+.hero-image {
+  opacity: 0;
+  animation: growIn 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="demoModal">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h2>Book a Demo</h2>
+            <p>Get a peek into the future of school management.</p>
+            <form class="demo-form" id="demoForm">
+                <div class="form-row">
+                    <input type="text" placeholder="Name" required>
+                    <input type="tel" placeholder="Phone No." required>
+                </div>
+                <input type="email" placeholder="Email I'd" required>
+                <input type="text" placeholder="Institution Name" required>
+                <button type="submit">Request Demo</button>
+            </form>
+        </div>
+    </div>
+
+
+    
+    <nav class="navbar">
+        <div class="logo">
+            <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="whyus.html">Why us?</a>
+            <a href="features.html">Features</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="#demo" class="request-demo">Request Demo →</a>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 class="hero-heading">Your Institution. Smarter. Faster.<br>AI-Optimized</h1>
+                <p class="hero-subheading">Empower your institution with AI-driven insights, smarter decision-making, and seamless automation. From student success to resource optimization, experience the future of education!</p>
+                <a href="#learn-more" class="hero-button">
+                    <span class="button-text">See features<span class="arrow">→</span></span>
+                    <span class="circle"></span>
+                  </a>
+            </div>
+            <div class="hero-right">
+                <img src="features_image.png" alt="Eduthalamus Features" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="features-cards">
+        <div class="cards-container">
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <div class="card-img">
+                        <img src="features_card1.png" alt="Data-Driven Decisions">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Effortless Scheduling with AI-Powered Timetables</h2>
+                        <p class="card-description">Say goodbye to scheduling conflicts! Our intelligent timetabling system automatically allocates resources, optimizes schedules, and ensures a smooth learning experience for students and faculty.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2f8fa;">
+                        <img src="features_card2.png" alt="Predict Student Success">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Data-Driven Decisions with Smart Dashboards</h2>
+                        <p class="card-description">Gain instant insights into finance, academic performance, and operations with AI-powered analytics dashboards—your one-stop solution for real-time decision-making.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #f8e8e2;">
+                        <img src="features_card3.png" alt="Streamlined Communication">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Stay Ahead with Proactive Weather Alerts</h2>
+                        <p class="card-description">Never let unexpected weather disrupt your institution! Get real-time weather updates and automated notifications to keep students, staff, and schedules on track.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2e8f8;">
+                        <img src="features_card4.png" alt="Resource Optimization">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Smarter Admissions with AI-Driven Evaluations</h2>
+                        <p class="card-description">Optimize the student selection process with AI-based assessment tools that evaluate applications, recommend top candidates, and streamline admissions.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2e8f8;">
+                        <img src="features_card5.png" alt="Resource Optimization">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Predict & Plan with AI Seat Availability Forecasting</h2>
+                        <p class="card-description">No more last-minute enrollment chaos! Our AI-driven forecasting ensures accurate seat availability predictions, optimizing class sizes and resource allocation.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2e8f8;">
+                        <img src="features_card6.png" alt="Resource Optimization">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">AI-Powered Student Profiling for Personalized Learning</h2>
+                        <p class="card-description">Go beyond grades! Create detailed student profiles that track academic progress, behavioral patterns, and learning preferences for a truly personalized education experience.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2e8f8;">
+                        <img src="features_card7.png" alt="Resource Optimization">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Real-Time Reports & Insights at Your Fingertips</h2>
+                        <p class="card-description">From student performance to institutional growth, our AI-driven analytics reports provide deep insights, empowering educators and administrators with data-backed strategies.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-color: #e2e8f8;">
+                        <img src="features_card8.png" alt="Resource Optimization">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Predict Student Success Before It Happens</h2>
+                        <p class="card-description">With AI-powered predictive analytics, identify students who need support, personalize learning plans, and enhance academic outcomes before challenges arise.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="more-features">
+        <div class="more-features-container">
+            <h2 class="more-title">But wait, there's more!</h2>
+            <p class="more-description">Empower your institution with a platform that adapts, evolves, and delivers every single day. Run your institution from the palm of your hand—anytime, anywhere.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M10.7852 15.842H10.2115C8.35681 15.842 7.42947 15.842 7.0342 15.2305C6.63892 14.6191 7.01555 13.7673 7.7688 12.0635L10.0333 6.94154C10.7182 5.3925 11.0606 4.61797 11.725 4.18399C12.3893 3.75 13.2324 3.75 14.9187 3.75H17.5305C19.579 3.75 20.6032 3.75 20.9895 4.41919C21.3759 5.08838 20.8677 5.98235 19.8514 7.77029L18.5115 10.1274C18.0062 11.0162 17.7536 11.4606 17.7571 11.8244C17.7617 12.2972 18.0131 12.7327 18.4192 12.9712C18.7317 13.1549 19.2409 13.1549 20.2592 13.1549C21.5466 13.1549 22.1904 13.1549 22.5256 13.3777C22.9611 13.6672 23.1891 14.1852 23.1092 14.704C23.0477 15.1032 22.6147 15.582 21.7487 16.5396L14.8299 24.1904C13.4709 25.6931 12.7914 26.4445 12.3351 26.2068C11.8788 25.9689 12.0979 24.9778 12.5361 22.9953L13.3946 19.112C13.7282 17.6025 13.8951 16.8478 13.4939 16.3449C13.0926 15.842 12.3235 15.842 10.7852 15.842Z" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="feature-item-content">
+                        <h3>Lightning-Fast, Effortless Navigation</h3>
+                        <p>A beautifully intuitive interface that anyone can use—no learning curve, just results.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M20.5311 5.75636L21.7686 4.51887C22.7939 3.49371 24.456 3.49371 25.4811 4.51887C26.5062 5.54405 26.5062 7.20616 25.4811 8.23133L24.2436 9.46882M20.5311 5.75636L12.207 14.0805C11.5726 14.715 11.1226 15.5097 10.905 16.3801L10 20L13.6199 19.095C14.4902 18.8775 15.285 18.4274 15.9195 17.793L24.2436 9.46882M20.5311 5.75636L24.2436 9.46882" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M23.7499 16.875C23.7499 20.9844 23.7499 23.039 22.615 24.422C22.4072 24.6751 22.1751 24.9072 21.9219 25.115C20.539 26.25 18.4842 26.25 14.3749 26.25H13.75C9.03595 26.25 6.67895 26.25 5.21449 24.7855C3.75004 23.3211 3.75 20.964 3.75 16.25V15.625C3.75 11.5156 3.75 9.46099 4.88492 8.07805C5.09271 7.82488 5.32488 7.59271 5.57805 7.38492C6.96099 6.25 9.01565 6.25 13.125 6.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    <div class="feature-item-content">
+                        <h3>Real-Time Data Magic</h3>
+                        <p>Syncs across your entire ecosystem instantly—stay accurate, stay updated, always.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M7.50488 12.5V6.25M13.7549 12.5V6.25M20.0049 12.5V6.875" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.27011 21.25C4.49517 21.25 3.6077 21.25 3.05628 20.7009C2.50488 20.1516 2.50488 19.2677 2.50488 17.5V10C2.50488 8.23224 2.50488 7.34835 3.05628 6.79918C3.6077 6.25 4.49517 6.25 6.27011 6.25H15.1256C19.4677 6.25 21.6387 6.25 23.3002 7.1328C24.5237 7.78291 25.5432 8.75688 26.2464 9.94732C27.2011 11.5639 27.2915 13.7242 27.4724 18.045C27.521 19.2097 27.5454 19.7921 27.3177 20.2327C27.1505 20.5567 26.8919 20.8251 26.5739 21.0051C26.1412 21.25 25.5561 21.25 24.3856 21.25H23.7549M11.2549 21.25H18.7549" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8.75488 23.75C10.1356 23.75 11.2549 22.6307 11.2549 21.25C11.2549 19.8693 10.1356 18.75 8.75488 18.75C7.37417 18.75 6.25488 19.8693 6.25488 21.25C6.25488 22.6307 7.37417 23.75 8.75488 23.75Z" stroke="black" stroke-width="1.5"/>
+                        <path d="M21.2549 23.75C22.6356 23.75 23.7549 22.6307 23.7549 21.25C23.7549 19.8693 22.6356 18.75 21.2549 18.75C19.8741 18.75 18.7549 19.8693 18.7549 21.25C18.7549 22.6307 19.8741 23.75 21.2549 23.75Z" stroke="black" stroke-width="1.5"/>
+                        <path d="M2.49512 12.5011H19.2051C19.9889 12.5011 20.2551 12.9601 20.8551 13.6801C21.5451 14.3551 22.0116 14.8285 22.6551 14.9251C23.5551 15.0601 26.8851 14.9926 26.8851 14.9926" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    <div class="feature-item-content">
+                        <h3>Smart Transport Management</h3>
+                        <p>Track buses, optimize routes & ensure student safety with ease.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M10 21.25V17.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 17.5V11.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 11.25V7.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M25 12.5V5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.75 3.75V17.5C3.75 21.6247 3.75 23.6871 5.03141 24.9686C6.31281 26.25 8.37521 26.25 12.5 26.25H26.25" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    <div class="feature-item-content">
+                        <h3>Custom Dashboards</h3>
+                        <p>Build your own insights with smart, dynamic reports that help you make powerful decisions.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M16.875 16.25V14.375C16.875 12.6194 16.875 11.7416 16.4536 11.1111C16.2712 10.8381 16.0369 10.6037 15.7639 10.4213C15.2131 10.0533 14.4736 10.0067 13.125 10.0008C12.9299 10 12.7219 10 12.5 10C10.7444 10 9.86664 10 9.23608 10.4213C8.9631 10.6037 8.72872 10.8381 8.54632 11.1111C8.125 11.7416 8.125 12.6194 8.125 14.375V21.875C8.125 23.6306 8.125 24.5084 8.54632 25.1389C8.72872 25.4119 8.9631 25.6463 9.23608 25.8286C9.86664 26.25 10.7444 26.25 12.5 26.25C14.2556 26.25 15.1334 26.25 15.7639 25.8286C16.0369 25.6463 16.2712 25.4119 16.4536 25.1389C16.6879 24.7884 16.7919 24.3615 16.8381 23.75" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M13.125 13.75V15.625C13.125 17.3806 13.125 18.2584 13.5464 18.8889C13.7288 19.1619 13.9631 19.3962 14.2361 19.5786C14.7869 19.9467 15.5264 19.9933 16.875 19.9991C17.0701 20 17.2781 20 17.5 20C19.2556 20 20.1334 20 20.7639 19.5786C21.0369 19.3962 21.2713 19.1619 21.4536 18.8889C21.875 18.2584 21.875 17.3806 21.875 15.625V8.125C21.875 6.36943 21.875 5.49164 21.4536 4.86107C21.2713 4.5881 21.0369 4.35372 20.7639 4.17132C20.1334 3.75 19.2556 3.75 17.5 3.75C15.7444 3.75 14.8666 3.75 14.2361 4.17132C13.9631 4.35372 13.7288 4.5881 13.5464 4.86107C13.3121 5.21156 13.2081 5.63845 13.1619 6.25" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    <div class="feature-item-content">
+                        <h3>Plug & Play Integrations</h3>
+                        <p>Seamlessly connect with your favorite tools—LMS, library systems, scheduling software, and more.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M15 27.5V11.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.2524 22.5025C9.18138 22.5025 7.50244 20.7793 7.50244 18.7081C5.38227 18.4049 3.75244 16.5815 3.75244 14.3775C3.75244 12.5065 4.92684 10.9099 6.57867 10.2845C6.36903 9.81674 6.25244 9.2982 6.25244 8.75244C6.25244 6.68138 7.93138 5.00244 10.0024 5.00244C10.4903 5.00244 10.9563 5.09559 11.3838 5.26505C11.8172 3.67303 13.2731 2.50244 15.0025 2.50244C16.7318 2.50244 18.1878 3.67303 18.6211 5.26505C19.0486 5.09559 19.5146 5.00244 20.0025 5.00244C22.0735 5.00244 23.7525 6.68138 23.7525 8.75244C23.7525 9.2982 23.6359 9.81674 23.4263 10.2845C25.078 10.9099 26.2525 12.5065 26.2525 14.3775C26.2525 16.5816 24.6225 18.405 22.5021 18.7081C22.5021 20.7793 20.8235 22.5025 18.7525 22.5025" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 18.75L18.125 15.625" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 16.25L11.875 13.125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.5 27.5H17.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    <div class="feature-item-content">
+                        <h3>Built to Scale, Designed to Last</h3>
+                        <p>Whether you're 300 students or 30,000, Eduthalamus grows with you, effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="cta-container" style="margin-top:30px;">
+            <p class="cta-text">Let <span class="edu">Edu</span><span class="thalamus">thalamus</span> take your school to the next level!</p>
+            <a href="#learn-more" class="hero-button">
+                <span class="button-text">See features<span class="arrow">→</span></span>
+                <span class="circle"></span>
+            </a>
+        </div>
+    </section>
+
+
+    <style>
+        .more-features {
+            padding: 80px 0;
+            background-color: #f5fbf5;
+        }
+
+        .more-features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .more-title {
+            color: #1D3557;
+            font-family: Manrope;
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 20px;
+        }
+
+        .more-description {
+            color: #1D3557;
+            text-align: center;
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: left;
+        }
+
+        .feature-item {
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .feature-item svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-item-content {
+            flex: 1;
+        }
+
+        .feature-item h3 {
+            color: #16192C;
+            font-family: Manrope;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #425466;
+            font-feature-settings: 'salt' on;
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .more-title {
+                font-size: 36px;
+            }
+        }
+
+        .cta-section {
+            
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .cta-text {
+            color: #1D3557;
+            font-family: "Open Sans";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 36px;
+            margin: 0;
+        }
+
+        .cta-text .edu {
+            color: #0492DA;
+            font-family: "Open Sans";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 36px;
+        }
+
+        .cta-text .thalamus {
+            color: #2D2D96;
+            font-family: "Open Sans";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 36px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('demoModal');
+            const demoButtons = document.querySelectorAll('.request-demo');
+            const closeButton = document.querySelector('.modal-close');
+            const demoForm = document.getElementById('demoForm');
+
+            // Open modal when demo buttons are clicked
+            demoButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            // Close modal when close button is clicked
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle form submission
+            demoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for your interest! We will contact you soon.');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                demoForm.reset();
+            });
+        });
+    </script>
+ <footer>
+    <div class="footer-container">
+        <div class="footer-left">
+   <div class="logo">
+        <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
+    </div>
+        </div>
+        
+        <div class="footer-center">
+            <div class="nav-links" style="margin-bottom:20px;">
+                <a href="index.html">Home</a>
+                <a href="whyus.html">Why us?</a>
+                <a href="features.html">Features</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                © 2025 All Rights Reserved
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div class="footer-certification">
+                <img src="iso.png" alt="ISO 27001:2022 Certified" style="height: 60px;">
+                <div class="iso-text">An ISO 27001:2022 Certified Company</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html> 
