@@ -709,8 +709,12 @@ font-style: normal;
         }
 
         .platform-text {
-            text-align: right;
-        }
+    text-align: right;
+    margin-right: 10px; /* This is too small */
+    padding-right: 40px; /* Add this for consistent spacing */
+    max-width: 90%; /* Prevent text from touching edge */
+    margin-left: auto; /* Keep it right-aligned but with space */
+}
 
         .platform-text h2 {
             color: #1D3557;
@@ -858,6 +862,13 @@ line-height: normal;
                 margin-right: 0;
                 max-width: 600px;
             }
+            .platform-text {
+        text-align: center;
+        margin-right: 0;
+        padding-right: 0;
+        max-width: 100%;
+        margin-left: 0;
+    }
         }
 
         @media (max-width: 768px) {

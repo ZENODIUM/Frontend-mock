@@ -454,6 +454,15 @@ line-height: normal;
             .middle-header {
                 margin-top: 0;
             }
+            .contact-middle {
+        max-width: 100%;
+        order: -1; /* Move it above other elements */
+        margin-bottom: 30px;
+    }
+    
+    .contact-image {
+        max-width: 80%;
+    }
             
             .contact-right {
                 flex-direction: row;
@@ -585,14 +594,18 @@ line-height: normal;
     justify-content: center;
     padding: 20px;
     position: relative;
+    min-width: 0; /* Changed from 450px */
+    max-width: 450px; /* Added */
+    width: 100%; /* Added */
     min-width: 450px;
     overflow: hidden;
 }
 
 .contact-image {
-    max-width: none;
+    max-width: 100%; /* Changed from 'none' */
+    width: 100%; /* Changed from fixed 450px */
     max-height: 500px;
-    width: 450px;
+   
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
