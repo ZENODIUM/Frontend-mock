@@ -12,17 +12,45 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Manrope;
+            font-family: 'Open Sans', sans-serif;
         }
-        @font-face {
-    font-family: 'dessau';
-    src: url('fonts/Dessau Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+
+        /* Page Transition Styles */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
 }
 
+        /* Preload Optimization */
         body {
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
+            font-family: 'Open Sans', sans-serif;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Optimize Images */
+        img {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            perspective: 1000;
+        }
+
+        /* Optimize Links */
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
         .navbar {
@@ -35,6 +63,14 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: none;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            perspective: 1000;
+            transform-style: preserve-3d;
         }
 
         .logo {
@@ -45,20 +81,24 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
         }
 
         .nav-links a {
     position: relative;
     text-decoration: none;
     color: #1C1C1C;
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 16px;
+            text-align: center;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    transition: color 0.3s ease;
+            transition: color 0.2s ease;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: color;
+            perspective: 1000;
 }
 
 .nav-links a::after {
@@ -68,21 +108,25 @@
     left: 50%;
     width: 0%;
     height: 2px;
-    background-color: #E63946;;
-    transition: width 0.4s ease, left 0.4s ease;
+            background-color: #E63946;
+            transition: width 0.2s ease, left 0.2s ease;
     transform: translateX(-50%);
+            will-change: width, left;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
 
-.nav-links a:hover {
-    color: #E63946;;
-}
+.nav-links a:hover,
+        .nav-links a.active {
+            color: #E63946;
+        }
 
-.nav-links a:hover::after {
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         .request-demo {
             display: flex;
@@ -142,81 +186,70 @@ line-height: normal;
         }
 
         .hero-button {
-  /* Existing button styles */
-  display: flex;
-  width: 150px;
-  height: 48px;
-  padding: 2px 2px 2px 21px;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background-color: #ff4757;
-  color: white;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
-  transition: all 0.3s;
-  /* Add border to visualize the container */
-  border: 2px solid #ff4757;
+    display: flex;
+    width: 159px;
+    height: 48px;
+    padding: 2px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 192px;
+    background: #E63946;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
 }
 
 .button-text {
-    font-family: "Open Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 700;
-  position: relative;
-  z-index: 2;
-  transition: color 0.3s 0.1s;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    position: relative;
+    z-index: 2;
+    transition: color 0.25s ease-in-out;
+    letter-spacing: 0.2px;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
 }
 
 .circle {
-  position: absolute;
-  right: -4px;
-  width: 54px;
-  height: 54px;
-  background: white;
-  border-radius: 50%;
-  z-index: 1;
-  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-  /* Initial gap */
-  box-shadow: inset 0 0 0 4px #ff4757;
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background: white;
+    border-radius: 192px;
+    z-index: 1;
+    right: 2px;
+    top: 2px;
+    transition: all 0.25s ease-in-out;
 }
-
 
 .arrow {
-    left: 26px;
-    color: #ff4757;
-    z-index: 2; /* Same as button-text */
-    position: relative;
+    position: absolute;
+    right: 15px;
+    color: #E63946;
+    z-index: 2;
+    font-size: 13px;
+    font-weight: 300;
+    transition: color 0.25s ease-in-out;
 }
+
 .hero-button:hover .circle {
-  /* Expand to fill width/height with 4px gap */
-  width: calc(100% + 6px);
-  height: calc(100% + 2px);
-  border-radius: 50px; /* Slightly less than button's radius */
-  /* right: 4px;
-  top: 4px; */
-  /* Maintain gap */
-  box-shadow: inset 0 0 0 2px #ff4757;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
 }
 
 .hero-button:hover .button-text {
-  color: #ff4757;
+    color: #E63946;
 }
 
-        .hero-button svg {
-            margin-left: 0;
-            vertical-align: middle;
-            background: white;
-            border-radius: 50%;
-            padding: 8px;
-            width: 44px;
-            height: 44px;
-            stroke: #ff4757;
-        }
+.hero-button:hover .arrow {
+    color: #E63946;
+}
 
         .stats {
     position: absolute;
@@ -280,7 +313,6 @@ font-weight: 700;
     z-index: 2;
 }
 
-
         @keyframes float {
             0% {
                 transform: translateY(0px);
@@ -310,7 +342,6 @@ font-weight: 700;
             background-color: #fff;
             border-radius: 0 0 50% 50%;
            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.25);
-
             z-index: 1;
         }
 
@@ -323,16 +354,28 @@ font-weight: 700;
             z-index: 2;
         }
 
-        .clients h2 {
-            font-size: 2.8rem;
-            color: #333;
-            margin-bottom: 10px;
+        .clients-container h2 {
+            color: #1A355D;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.2;
+            padding-top: 40px;
         }
 
-        .clients p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 10px;
+        .clients-container p {
+            color: #1A355D;
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 32px;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .logo-container {
@@ -396,7 +439,6 @@ backdrop-filter: blur(7.1px);
 border: 2px solid rgba(255, 255, 255, 1);
 }
 
-
         .about-box h2 {
             color: #0492DA;
 font-family: Manrope;
@@ -431,7 +473,7 @@ line-height: normal;
         }
 
         .for-everyone {
-            padding: 100px 0;
+            padding: 100px 0 0;
             background-color: #f0f7f0;
             position: relative;
         }
@@ -548,18 +590,18 @@ margin-bottom: 5px;
         }
 
         .solutions-container {
-            max-width: 1300px;
-            margin: 0 auto;
+            
+            margin: -50px auto;
          
             position: relative;
         }
 
         .solutions-content {
             display: grid;
-            grid-template-columns: 65% 35%;
-            gap: 30px;
+            grid-template-columns: 60% 40%;
+            gap: 40px;
             position: relative;
-            min-height: 700px;
+            max-height: 700px;
         }
 
         .solutions-left {
@@ -595,30 +637,37 @@ margin-bottom: 5px;
             position: relative;
         }
 
-        .slide-content h3 {
-            text-align: left;
+        .slide-content h3, .section-heading {
+            text-align: center;
             margin-bottom: 10px;
-            font-size: 2.5rem;
-            color: #1e3a5f;
+            font-size: 24px;
+            color: #1D3557;
             position: absolute;
-            top: 50px;
+            top: 120px;
+            left: 0px;
             z-index: 3;
+            width: 100%;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
         }
 
         .circle-wrapper {
             position: relative;
-            height: 700px;
+            height: 600px;
             width: 100%;
-            margin-top: 0;
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .circle-image {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             object-fit: contain;
             position: absolute;
             left: 50%;
-            top: 40%;
+            top: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
         }
@@ -634,12 +683,9 @@ margin-bottom: 5px;
             background: #FFF;
             border-radius: 20px;
             box-shadow: -3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            padding: 20px 25px;
+            padding: 20px;
             width: 241px;
-            height: 123px;
             position: absolute;
-            opacity: 0;
-            transform: translateY(20px);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -671,22 +717,22 @@ font-style: normal;
         }
 
         .solution-card-1 {
-            top: 150px;
-            left: 0;
+            top: 20%;
+            left: 50px;
         }
 
         .solution-card-2 {
-            top: 150px;
-            right: 0;
+            top: 20%;
+            right: 50px;
         }
 
         .solution-card-3 {
-            top: 300px;
-            left: 0;
+            
+            left: 50px;
         }
 
         .solution-card-4 {
-            top: 300px;
+            top: 450px;
             right: 0;
         }
 
@@ -703,32 +749,81 @@ font-style: normal;
         .solutions-right {
             position: sticky;
             top: 25%;
-            transform: translateY(-50%);
-            padding-right: 20px;
-            align-self: center;
+            padding-right: 0;
+            align-self: flex-start;
+            margin-top: 100px;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
         }
 
-        .platform-text {
-    text-align: right;
-    margin-right: 10px; /* This is too small */
-    padding-right: 40px; /* Add this for consistent spacing */
-    max-width: 90%; /* Prevent text from touching edge */
-    margin-left: auto; /* Keep it right-aligned but with space */
-}
+        .platform-section {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 40px 20px 20px;
+            height: 100%;
+        }
 
-        .platform-text h2 {
+        .text-block {
+            max-width: 800px;
+            padding: 20px 60px 40px 40px;
+            text-align: right;
+            margin: 0;
+            margin-right: 0;
+        }
+
+        .heading-block {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .heading-block h1 {
+            display: inline;
+            font-size: 36px;
+            font-weight: 700;
             color: #1D3557;
-font-family: Manrope;
-font-size: 44px;
-font-weight: 700;
-            margin-bottom: 15px;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Manrope', sans-serif;
+            text-align: right;
         }
 
-        .platform-text p {
-            color: #717171;
-font-family: "Open Sans";
-font-size: 16px;
+        .subheading {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 0.5rem;
             line-height: 1.5;
+            font-family: 'Manrope', sans-serif;
+            padding: 0;
+            max-width: 400px;
+            margin-left: auto;
+        }
+
+        @media (max-width: 992px) {
+            .heading-block, .heading-block h1, .subheading {
+                text-align: center;
+            }  .nav-container.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            .subheading {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .heading-line {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: right;
+            color: #0a1f44;
+            margin: 0;
+            line-height: 1.2;
+            display: block;
+            font-family: 'Manrope', sans-serif;
         }
 
         @keyframes fadeInLeftTop {
@@ -765,82 +860,119 @@ font-size: 16px;
         }
 
         footer {
-            background-color: #fff;
-            padding: 50px 0 20px;
-            border-top: 1px solid #eee;
+            background-color: rgb(249 250 251);
+            border-top: 1px solid rgb(229 231 235);
+            padding: 2.5rem 0;
         }
 
         .footer-container {
-            width:100%;
+            max-width: 1200px;
             margin: 0 auto;
-    
-            padding: 1rem 5%;
+            padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .footer-left {
-            display: flex;
             align-items: center;
         }
 
+        .footer-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            max-width: none;
+        }
+
         .footer-center {
-            margin-left: 69px;
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 1.25rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-nav a {
+            color: rgb(55 65 81);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: rgb(37 99 235);
+        }
+
+        .footer-copyright {
+            color: rgb(107 114 128);
+            font-size: 0.75rem;
         }
 
         .footer-right {
+            flex: 1;
             display: flex;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: #333;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #0066cc;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
         }
 
         .footer-certification {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
+        }
+
+        .footer-certification img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            max-width: none;
         }
 
         .iso-text {
-            color: #000;
-font-family: "Open Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+            color: rgb(55 65 81);
+            font-size: 0.75rem;
             text-align: center;
         }
 
-        .footer-bottom {
-            color: rgba(0, 0, 0, 0.50);
-font-family: Manrope;
-font-size: 12px;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
-            text-align: center;
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-left, .footer-right {
+                justify-content: center;
+            }
+
+            .footer-nav {
+                gap: 1.5rem;
+            }
+
+            .footer-right {
+                align-items: center;
+            }
         }
 
         @media (max-width: 992px) {
@@ -852,23 +984,18 @@ line-height: normal;
             
             .solutions-right {
                 min-width: 100%;
-                align-items: center;
-                text-align: center;
+                align-items: right;
+                text-align: right;
                 padding-left: 0;
             }
             
-            .platform-text p {
-                margin-left: 0;
-                margin-right: 0;
-                max-width: 600px;
-            }
             .platform-text {
-        text-align: center;
-        margin-right: 0;
-        padding-right: 0;
-        max-width: 100%;
-        margin-left: 0;
-    }
+                text-align: right;
+                margin-right: 0;
+                padding-right: 0;
+                max-width: 100%;
+                margin-left: 0;
+            }
         }
 
         @media (max-width: 768px) {
@@ -880,13 +1007,12 @@ line-height: normal;
             
             .solution-card {
                 position: relative;
-                max-width: 100%;
                 width: 100%;
+                max-width: 300px;
+                margin: 15px auto;
                 top: auto !important;
                 left: auto !important;
                 right: auto !important;
-                transform: none !important;
-                margin-bottom: 20px;
             }
             
             .circle-image {
@@ -1069,7 +1195,7 @@ line-height: normal;
 }
 
 .slide[data-index="0"] .solution-card-5.show {
-    animation: fadeInRight 1s forwards 0.3s;
+    animation: fadeInRight 1s forwards 0.3s';
 }
 
 .slide[data-index="0"] .solution-card-6.show {
@@ -1107,13 +1233,11 @@ line-height: normal;
 }
 
 .slider-nav {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
     position: absolute;
-    bottom: 250px;
-    left: 450px;
+    bottom: 160px;
+    right: 80px;
+    display: flex;
+    gap: 15px;
     z-index: 10;
 }
 
@@ -1129,6 +1253,8 @@ line-height: normal;
     border: 1px solid #ddd;
     cursor: pointer;
     transition: all 0.3s;
+    font-weight: 900;
+    font-size: 18px;
 }
 
 .slider-button:hover {
@@ -1139,22 +1265,78 @@ line-height: normal;
 
 .section-heading {
     text-align: left;
-    margin-bottom: 10px;
-    font-size: 36px;
-    color: #1e3a5f;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #1D3557;
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 80px;
     z-index: 3;
     width: 100%;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+}
+
+@media (max-width: 992px) {
+    .solutions-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .solutions-right {
+        padding: 40px;
+        margin-top: 0;
+    }
+    
+    .platform-text {
+        text-align: center;
+    }
+    
+    .platform-text h2,
+    .platform-text p {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .slider-nav {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        justify-content: center;
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 768px) {
     .section-heading {
         position: relative;
-        top: auto;
         text-align: center;
-        margin-bottom: 40px;
+        left: 0;
+        margin: 20px auto;
+    }
+    
+    .circle-wrapper {
+        height: auto;
+        margin: 40px 0;
+    }
+    
+    .circle-image {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        transform: none;
+        left: auto;
+        top: auto;
+    }
+    
+    .solution-card {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        margin: 15px auto;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
     }
 }
 
@@ -1354,7 +1536,7 @@ line-height: normal;
             <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html"class="active">Home</a>
             <a href="whyus.html">Why us?</a>
             <a href="features.html">Features</a>
             <a href="contact.html">Contact</a>
@@ -1362,43 +1544,46 @@ line-height: normal;
         <a href="#demo" class="request-demo">Request Demo →</a>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 style="font-size: 48px;">Tired of <span>Juggling</span> Multiple Systems for School Operations?</h1>
-            <p style="font-size: 18px;">Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments.</p>
-                <div class="hero-button-container">
-                    <a href="#learn-more" class="hero-button">
-                        <span class="button-text">Learn More <span class="arrow">→</span></span>
-                        <span class="circle"></span>
-                      </a>
-    </div>
+    <section class="hero-section">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 style="font-size: 48px;">Tired of <span>Juggling</span> Multiple Systems for School Operations?</h1>
+                <p style="font-size: 18px;">Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments.</p>
+                    <div class="hero-button-container">
+                        <a href="#learn-more" class="hero-button">
+                            <span class="button-text">Learn More</span>
+                            <span class="arrow">→</span>
+                            <span class="circle"></span>
+                          </a>
         </div>
-    <div class="saturn-wrapper">
-        <img src="saturn.png" alt="Saturn Planet" class="saturn">
-        <img src="brain.gif" alt="GIF in Saturn" class="gif-in-saturn">
-    </div>
-        <div class="stats">
-            <div class="stat-card" style="position: absolute; top: 130px;left: -490px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                    <path d="M21.875 27.895C23.1189 28.2562 24.4078 28.4388 25.7031 28.4375C27.7862 28.4405 29.8422 27.9656 31.7129 27.0492C31.7682 25.7421 31.3959 24.4526 30.6524 23.3761C29.9089 22.2996 28.8347 21.4949 27.5927 21.0839C26.3507 20.6728 25.0085 20.6779 23.7696 21.0983C22.5307 21.5187 21.4627 22.3315 20.7273 23.4135M21.875 27.895V27.8906C21.875 26.2675 21.4579 24.7406 20.7273 23.4135M21.875 27.895V28.0496C19.0684 29.7399 15.853 30.6305 12.5767 30.625C9.17729 30.625 5.99666 29.6844 3.28124 28.0496L3.27979 27.8906C3.27867 25.8263 3.96464 23.8203 5.22955 22.1889C6.49447 20.5575 8.26637 19.3935 10.2659 18.8805C12.2655 18.3674 14.3789 18.5344 16.273 19.3551C18.1672 20.1759 19.7343 21.6037 20.7273 23.4135M17.5 9.29688C17.5 10.6022 16.9814 11.8541 16.0584 12.7772C15.1354 13.7002 13.8835 14.2188 12.5781 14.2188C11.2728 14.2188 10.0209 13.7002 9.09783 12.7772C8.1748 11.8541 7.65624 10.6022 7.65624 9.29688C7.65624 7.99151 8.1748 6.73961 9.09783 5.81658C10.0209 4.89355 11.2728 4.375 12.5781 4.375C13.8835 4.375 15.1354 4.89355 16.0584 5.81658C16.9814 6.73961 17.5 7.99151 17.5 9.29688ZM29.5312 12.5781C29.5312 13.5934 29.1279 14.5671 28.41 15.285C27.6921 16.0029 26.7184 16.4063 25.7031 16.4063C24.6878 16.4063 23.7141 16.0029 22.9962 15.285C22.2783 14.5671 21.875 13.5934 21.875 12.5781C21.875 11.5628 22.2783 10.5891 22.9962 9.87123C23.7141 9.15332 24.6878 8.75 25.7031 8.75C26.7184 8.75 27.6921 9.15332 28.41 9.87123C29.1279 10.5891 29.5312 11.5628 29.5312 12.5781Z" stroke="#E63946" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                <div class="stat-text-wrapper">
-                    <div class="stat-number">1.5 M+</div>
-                    <div class="stat-label">Students</div>
-                </div>
             </div>
-            <div class="stat-card" style="position: absolute; top: -140px;left: -120px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                    <path d="M2.5 27.5H27.5" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M22.5 11.25H17.5C14.3975 11.25 13.75 11.8975 13.75 15V27.5H26.25V15C26.25 11.8975 25.6025 11.25 22.5 11.25Z" stroke="#E63946" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M18.75 27.5H3.75V6.25C3.75 3.1475 4.3975 2.5 7.5 2.5H15C18.1025 2.5 18.75 3.1475 18.75 6.25V11.25" stroke="#E63946" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M3.75 7.5H7.5M3.75 12.5H7.5M3.75 17.5H7.5" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M18.75 16.25H21.25M18.75 20H21.25" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M20 27.5V23.75" stroke="#E63946" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                <div class="stat-text-wrapper">
-                    <div class="stat-number">300+</div>
-                    <div class="stat-label">Institutions</div>
+        <div class="saturn-wrapper">
+            <img src="saturn.png" alt="Saturn Planet" class="saturn">
+            <img src="brain.gif" alt="GIF in Saturn" class="gif-in-saturn">
+        </div>
+            <div class="stats">
+                <div class="stat-card" style="position: absolute; top: 130px;left: -490px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                        <path d="M21.875 27.895C23.1189 28.2562 24.4078 28.4388 25.7031 28.4375C27.7862 28.4405 29.8422 27.9656 31.7129 27.0492C31.7682 25.7421 31.3959 24.4526 30.6524 23.3761C29.9089 22.2996 28.8347 21.4949 27.5927 21.0839C26.3507 20.6728 25.0085 20.6779 23.7696 21.0983C22.5307 21.5187 21.4627 22.3315 20.7273 23.4135M21.875 27.895V27.8906C21.875 26.2675 21.4579 24.7406 20.7273 23.4135M21.875 27.895V28.0496C19.0684 29.7399 15.853 30.6305 12.5767 30.625C9.17729 30.625 5.99666 29.6844 3.28124 28.0496L3.27979 27.8906C3.27867 25.8263 3.96464 23.8203 5.22955 22.1889C6.49447 20.5575 8.26637 19.3935 10.2659 18.8805C12.2655 18.3674 14.3789 18.5344 16.273 19.3551C18.1672 20.1759 19.7343 21.6037 20.7273 23.4135M17.5 9.29688C17.5 10.6022 16.9814 11.8541 16.0584 12.7772C15.1354 13.7002 13.8835 14.2188 12.5781 14.2188C11.2728 14.2188 10.0209 13.7002 9.09783 12.7772C8.1748 11.8541 7.65624 10.6022 7.65624 9.29688C7.65624 7.99151 8.1748 6.73961 9.09783 5.81658C10.0209 4.89355 11.2728 4.375 12.5781 4.375C13.8835 4.375 15.1354 4.89355 16.0584 5.81658C16.9814 6.73961 17.5 7.99151 17.5 9.29688ZM29.5312 12.5781C29.5312 13.5934 29.1279 14.5671 28.41 15.285C27.6921 16.0029 26.7184 16.4063 25.7031 16.4063C24.6878 16.4063 23.7141 16.0029 22.9962 15.285C22.2783 14.5671 21.875 13.5934 21.875 12.5781C21.875 11.5628 22.2783 10.5891 22.9962 9.87123C23.7141 9.15332 24.6878 8.75 25.7031 8.75C26.7184 8.75 27.6921 9.15332 28.41 9.87123C29.1279 10.5891 29.5312 11.5628 29.5312 12.5781Z" stroke="#E63946" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    <div class="stat-text-wrapper">
+                        <div class="stat-number">1.5 M+</div>
+                        <div class="stat-label">Students</div>
+                    </div>
+                </div>
+                <div class="stat-card" style="position: absolute; top: -140px;left: -120px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M2.5 27.5H27.5" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M22.5 11.25H17.5C14.3975 11.25 13.75 11.8975 13.75 15V27.5H26.25V15C26.25 11.8975 25.6025 11.25 22.5 11.25Z" stroke="#E63946" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M18.75 27.5H3.75V6.25C3.75 3.1475 4.3975 2.5 7.5 2.5H15C18.1025 2.5 18.75 3.1475 18.75 6.25V11.25" stroke="#E63946" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M3.75 7.5H7.5M3.75 12.5H7.5M3.75 17.5H7.5" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M18.75 16.25H21.25M18.75 20H21.25" stroke="#E63946" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M20 27.5V23.75" stroke="#E63946" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    <div class="stat-text-wrapper">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">Institutions</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1406,16 +1591,8 @@ line-height: normal;
 
     <section class="clients">
         <div class="clients-container">
-            <h2 style="color: #1D3557;font-size: 36px;
-            font-style: normal;
-            font-weight: 600;">Our Clients</h2>
-            <p style="color: #1D3557;
-
-            text-align: center;
-            font-family: Open Sans;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;">Join the growing list of schools who trust us</p>
+            <h2>Our Clients</h2>
+            <p>Join the growing list of schools who trust us</p>
             <div class="logo-container">
                 <img src="client_logos.png" alt="Client Logos" class="client-logos">
             </div>
@@ -1439,7 +1616,8 @@ line-height: normal;
             font-weight: 400;
             line-height: 28px;">Eduthalamus is the brain behind digital schools, offering a powerful ERP solution that streamlines school management with advanced technology. From student admissions and fee tracking to academic reporting and communication, Eduthalamus simplifies complex processes, empowering institutions to deliver smarter, more efficient, and future-ready education. Transform your school operations and embrace the future of digital learning with Eduthalamus</p>
                                 <a href="#learn-more" class="hero-button" style="margin-top: 30px;">
-                                    <span class="button-text">Learn More <span class="arrow">→</span></span>
+                                    <span class="button-text">Learn More</span>
+                                    <span class="arrow">→</span>
                                     <span class="circle"></span>
                                   </a>
         </div>
@@ -1480,22 +1658,22 @@ line-height: normal;
                 <div class="solutions-left" id="solutions-slider">
                     <div class="slide" data-index="0">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size:36px;">Admission and Engagement Solutions</h3>
+                            <h3 class="section-heading">Admission and Engagement Solutions</h3>
                             <div class="circle-wrapper">
                     <img src="circle_image.png" alt="Admission Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:230px;left:90px;height:140px;">
+                                <div class="solution-card solution-card-1" style="top:280px;left:20px;height:140px; bottom: 100px;">
                                     <p><b><span>🔍</span> Smart Enquiry & Application Assessment</b></p>
                                     <p>Simplify your application journey with intuitive self-service enquiry forms. Receive quick responses, and let automation handle application evaluations.</p>
                     </div>
                     
-                                <div class="solution-card solution-card-2" style="top:170px;left:500px;">
+                                <div class="solution-card solution-card-2" style="top: 200px;left:480px;">
                                     <p><b><span>✓</span> Seamless Engagement with Representatives</b></p>
                                     <p>Connect with our admission experts in real-time through interactive self-service options. Get instant support and guidance for a smooth journey.</p>
                     </div>
                     
-                                <div class="solution-card solution-card-3" style="top:390px;left:460px;">
+                                <div class="solution-card solution-card-3" style="top:450px;left:480px;padding:20px ;">
                                     <p><b><span>📋</span> Automated Admission Offers</b></p>
                                     <p>Accelerate your admission process with automated offer generation and delivery. Say goodbye to delays and experience a faster enrollment process.</p>
                                 </div>
@@ -1505,37 +1683,37 @@ line-height: normal;
 
                     <div class="slide" data-index="1">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Student Management Solutions</h3>
+                            <h3 class="section-heading">Student Management Solutions</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image2.png" alt="Academic Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:120px;left:130px;">
+                                <div class="solution-card solution-card-1" style="top:180px;left:120px;">
                                     <p><b><span>📚</span> Course Design & Academic Organization</b></p>
                                     <p>Effortlessly create, approve, and manage curriculum and academic programs with a streamlined workflow.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2" style="top:120px;left:485px;">
+                                <div class="solution-card solution-card-2" style="top:180px;left:440px;">
                                     <p><b><span>🏆</span> Scholarships, Awards & Recognitions</b></p>
                                     <p>Efficiently oversee and grant bursaries, scholarships, prizes, and honors to deserving students.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:260px;left:80px;">
+                                <div class="solution-card solution-card-3" style="top:320px;left:20px;">
                                     <p><b><span>🎓</span> Student Services & Engagement</b></p>
                                     <p>Centralize student communication, handle inquiries, manage payments, and track academic progress—all in one place.</p>
                                 </div>
 
-                                <div class="solution-card solution-card-4" style="top:260px;left:530px;">
+                                <div class="solution-card solution-card-4" style="top:320px;left:520px;">
                                     <p><b><span>🎉</span> Graduation & Completion Support</b></p>
                                     <p>Simplify the graduation process, ensuring smooth transitions for students completing their academic journey.</p>
                                 </div>
 
-                                <div class="solution-card solution-card-5" style="top:400px;left:110px;">
+                                <div class="solution-card solution-card-5" style="top:465px;left:30px;">
                                     <p><b><span>⚖️</span> Regulatory Compliance & Government Adherence</b></p>
                                     <p>Ensure seamless execution and reporting of contracts while staying fully compliant with all government and regulatory standards.</p>
                                 </div>
 
-                                <div class="solution-card solution-card-6" style="top:400px;left:510px;" style="display: block !important;">
+                                <div class="solution-card solution-card-6" style="top:480px;left:480px;" style="display: block !important;">
                                     <p><b><span>🔗</span> Seamless System Integration</b></p>
                                     <p>Easily connect with learning management systems, library services, and scheduling tools for a unified digital experience.</p>
                                 </div>
@@ -1545,22 +1723,22 @@ line-height: normal;
 
                     <div class="slide" data-index="2">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Timetabling and Scheduling </h3>
+                            <h3 class="section-heading">Timetabling and Scheduling</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image3.png" alt="Scheduling Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:110px;height: 160px;">
+                                <div class="solution-card solution-card-1" style="top:180px;left:50px;height:180px;">
                                     <p><b><span>📅</span> Effortless Course & Exam Scheduling</b></p>
                                     <p>Seamlessly plan teaching schedules, ensuring clash-free timetables, optimized room usage, and smooth exam planning across campuses. Our intelligent scheduling system considers faculty availability, delivery requirements, and student needs.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2" style="top:160px;left:500px;">
+                                <div class="solution-card solution-card-2" style="top:200px;left:480px;">
                                     <p><b><span>🔎</span> Real-Time Timetable Access</b></p>
                                     <p>Empower students and faculty with personalized timetable views. Offer different access levels, from individual schedules to module-based and campus-wide timetables.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:380px;left:130px;">
+                                <div class="solution-card solution-card-3" style="top:460px;left:475px;">
                                     <p><b><span>📊</span> Streamlined Exam Management</b></p>
                                     <p>Enhance the student experience with a graphical scheduling tool that balances exam timetables, maximizes space efficiency, and accounts for staff and invigilator constraints.</p>
                                 </div>
@@ -1570,7 +1748,7 @@ line-height: normal;
 
                     <div class="slide" data-index="3">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Inventory Management</h3>
+                            <h3 class="section-heading">Inventory Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image4.png" alt="Procurement Solutions" class="circle-image">
                             </div>
@@ -1580,12 +1758,12 @@ line-height: normal;
                                     <p>Efficiently manage inventory across multiple locations with automated order processing and real-time stock tracking. Ensure seamless replenishment and reduce manual workload.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"style="top:250px;left:500px;height:147px;">
+                                <div class="solution-card solution-card-2"style="top:300px;left:500px;height: 160px;px;">
                                     <p><b><span>📜</span> Seamless Contract & Compliance Management</b></p>
                                     <p>Ensure precision in supplier agreements with comprehensive contract management tools. Support academic supplies and services while maintaining compliance with institutional requirements.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:380px;left:130px;height:161px;">
+                                <div class="solution-card solution-card-3" style="top:420px;left:20px;height:161px;">
                                     <p><b><span>🔍</span> End-to-End Procurement & Vendor Management</b></p>
                                     <p>Easily source, assess, and collaborate with suppliers for academic procurement needs. Maintain accurate vendor contracts, track transactions, and generate detailed reports to streamline supply chain operations.</p>
                                 </div>
@@ -1595,7 +1773,7 @@ line-height: normal;
 
                     <div class="slide" data-index="4">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-style: 36px;">Smart Finance Management</h3>
+                            <h3 class="section-heading">Smart Finance Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image5.png" alt="Financial Solutions" class="circle-image">
                             </div>
@@ -1605,12 +1783,12 @@ line-height: normal;
                                     <p>Align financial planning with institutional goals through integrated, driver-based budgeting and forecasting for better decision-making.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2" style="top:250px;left:500px;height: 130px;">
+                                <div class="solution-card solution-card-2" style="top:300px;left:500px;height: 130px;">
                                     <p><b><span>🌍</span> Seamless Parent & Stakeholder Engagement</b></p>
                                     <p>Enhance financial transparency with multiple engagement channels, including online portals, mobile apps, and in-person consultations.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:380px;left:130px;height: 130px;">
+                                <div class="solution-card solution-card-3" style="top:450px;left:40px;height: 140px;">
                                     <p><b><span>💰</span> Optimized Expense & Revenue Management</b></p>
                                     <p>Automate expense tracking, enforce policy compliance, and maintain up-to-date financial data with a flexible multi-company and multi-contribution system.</p>
                                 </div>
@@ -1620,27 +1798,27 @@ line-height: normal;
 
                     <div class="slide" data-index="5">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Efficient School Administrative Management</h3>
+                            <h3 class="section-heading">Efficient School Administrative Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image6.png" alt="Administrative Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1"  style="top:160px;left:110px;">
+                                <div class="solution-card solution-card-1"  style="top:200px;left:60px;">
                                     <p><b><span>📌</span> Smart Attendance Tracking</b></p>
                                     <p>Monitor student and staff attendance in real time with automated reports and absence alerts. Seamlessly integrate with biometric or RFID systems for precise tracking.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"  style="top:160px;left:510px;height:132px;">
+                                <div class="solution-card solution-card-2"  style="top:200px;left:450px;height:132px;">
                                     <p><b><span>📢</span> Centralized Communication & Messaging</b></p>
                                     <p>Streamline announcements, newsletters, and updates through an integrated communication platform, ensuring seamless engagement across the institution.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3"  style="top:380px;left:110px;">
+                                <div class="solution-card solution-card-3"  style="top:420px;left:35px;">
                                     <p><b><span>📊</span> Predictive Facility Management</b></p>
                                     <p>Optimize student capacity planning with condition-based prediction modeling. Assess operational, maintenance, and upgrade costs to ensure efficient facility management.</p>
                                 </div>
 
-                                <div class="solution-card solution-card-4" style="top:380px;left:500px;">
+                                <div class="solution-card solution-card-4" style="top:400px;left:500px;">
                                     <p><b><span>📞</span> Reception & Administrative Support</b></p>
                                     <p>Simplify daily operations with efficient call handling, inquiry management, and mail processing for a smooth administrative workflow.</p>
                                 </div>
@@ -1650,27 +1828,27 @@ line-height: normal;
 
                     <div class="slide" data-index="6">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Academic Management</h3>
+                            <h3 class="section-heading">Academic Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image7.png" alt="Curriculum Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:110px;height:157px;">
+                                <div class="solution-card solution-card-1" style="top:160px;left:60px;height:157px;">
                                     <p><b><span>📖</span> Curriculum Design & Assessment</b></p>
                                     <p>Develop and organize a well-structured curriculum that meets educational standards. Create, administer, and automate grading for various assessments, including formative, summative, and standardized tests.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2" style="top:160px;left:510px;">
+                                <div class="solution-card solution-card-2" style="top:200px;left:px;">
                                     <p><b><span>📊</span> Advanced Analytics & Reporting</b></p>
                                     <p>Leverage powerful dashboards to track student performance, identify improvement areas, and generate reports that inform instructional strategies.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:380px;left:110px;height:157px;">
+                                <div class="solution-card solution-card-3" style="top:420px;left:20px;height:157px;">
                                     <p><b><span>📚</span> Student Support & Performance Tracking</b></p>
                                     <p>Provide seamless online platforms for assignments, submissions, and grading. Monitor student progress with data-driven insights, enabling personalized learning and continuous development.</p>
                                 </div>
 
-                                <div class="solution-card solution-card-4"style="top:380px;left:500px;">
+                                <div class="solution-card solution-card-4"style="top:450px;left:500px;">
                                     <p><b><span>📢</span> Performance Evaluation & Feedback</b></p>
                                     <p>Conduct regular evaluations with structured feedback mechanisms to support student growth and academic excellence.</p>
                                 </div>
@@ -1680,22 +1858,22 @@ line-height: normal;
 
                     <div class="slide" data-index="7">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Staff & Payroll Management</h3>
+                            <h3 class="section-heading">Staff & Payroll Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image8.png" alt="HR Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:110px;">
+                                <div class="solution-card solution-card-1" style="top:200px;left:80px;">
                                     <p><b><span>👩‍💼</span> Centralized Employee Records</b></p>
                                     <p>Securely store and manage staff information, including personal details, contact records, and employment history, in one organized platform.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"style="top:250px;left:500px;">
+                                <div class="solution-card solution-card-2"style="top:300px;left:500px;">
                                     <p><b><span>🗓️</span> Seamless Leave Management</b></p>
                                     <p>Enable staff to request and track leave balances through an intuitive online system, streamlining approvals and ensuring transparency.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3"style="top:380px;left:130px;">
+                                <div class="solution-card solution-card-3"style="top:460px;left:40px;">
                                     <p><b><span>💰</span> Automated Payroll Processing</b></p>
                                     <p>Accurately calculate salaries, wages, and deductions based on attendance and contractual terms, ensuring timely and error-free payments.</p>
                                 </div>
@@ -1705,7 +1883,7 @@ line-height: normal;
 
                     <div class="slide" data-index="8">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Document & Record Management</h3>
+                            <h3 class="section-heading">Document & Record Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image9.png" alt="Document Solutions" class="circle-image">
                             </div>
@@ -1715,12 +1893,12 @@ line-height: normal;
                                     <p>Securely capture, store, and manage documents and attachments for seamless information access across your institution.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"style="top:250px;left:500px;height:132px;">
+                                <div class="solution-card solution-card-2"style="top:350px;left:500px;height:132px;">
                                     <p><b><span>🔍</span> Effortless Document Search & Collaboration</b></p>
                                     <p>Integrate all records into a single content management system, enabling quick searchability, easy collaboration, and adherence to industry standards.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3"style="top:380px;left:130px;">
+                                <div class="solution-card solution-card-3"style="top:470px;left:40px;">
                                     <p><b><span>🗄️</span> Automated Record Retention & Compliance</b></p>
                                     <p>Ensure compliance with government regulations by automating record retention and disposal processes.</p>
                                 </div>
@@ -1730,7 +1908,7 @@ line-height: normal;
 
                     <div class="slide" data-index="9">
                         <div class="slide-content">
-                            <h3 class="section-heading" style="font-size: 36px;">Smart Transport Management</h3>
+                            <h3 class="section-heading">Smart Transport Management</h3>
                             <div class="circle-wrapper">
                                 <img src="circle_image10.png" alt="Transportation Solutions" class="circle-image">
                             </div>
@@ -1745,7 +1923,7 @@ line-height: normal;
                                     <p>Keep parents informed with a mobile app for live bus tracking, along with instant alerts on arrivals, delays, and schedule changes.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:380px;left:130px;height:132px;">
+                                <div class="solution-card solution-card-3" style="top:450px;left:40px;height:140px;">
                                     <p><b><span>📊</span> Data-Driven Insights & Optimization</b></p>
                                     <p>Generate detailed reports on route efficiency, vehicle usage, and driver performance, helping identify cost-saving opportunities and improvements.</p>
                                 </div>
@@ -1754,13 +1932,18 @@ line-height: normal;
                     </div>
                 </div>
                 
-                <div class="solutions-right">
-                    <div class="platform-text">
-                        <h2>One Platform.<br> Many Possibilities.</h2>
-                        <p>Custom-built modules, crafted to fit every unique rhythm of your school — from admin to academics, and everything in between.</p>
+                <section class="platform-section">
+                    <div class="text-block">
+                      <div class="heading-block">
+                        <h1>One Platform. </h1>
+                        <h1><br>Many Possibilities.</h1>
+                      </div>
+                      <p class="subheading">
+                        Custom-built modules, crafted to fit every unique rhythm of your school — from admin to academics, and everything in between.
+                      </p>
                     </div>
-                </div>
-            </div>
+                  </section>
+                  
             
             <div class="slider-nav">
                 <div class="slider-button prev">←</div>
@@ -1772,29 +1955,29 @@ line-height: normal;
     <footer>
         <div class="footer-container">
             <div class="footer-left">
-       <div class="logo">
-            <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
+                <div class="footer-logo">
+                    <img src="edu_logo.png" alt="eduthalamus">
                 </div>
             </div>
             
             <div class="footer-center">
-                <div class="nav-links" style="margin-bottom:20px;">
+                <nav class="footer-nav">
                     <a href="index.html">Home</a>
                     <a href="whyus.html">Why us?</a>
                     <a href="features.html">Features</a>
                     <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-bottom">
+                </nav>
+                <div class="footer-copyright">
                     © 2025 All Rights Reserved
                 </div>
             </div>
-            
+
             <div class="footer-right">
-            <div class="footer-certification">
-                    <img src="iso.png" alt="ISO 27001:2022 Certified" style="height: 60px;">
+                <div class="footer-certification">
+                    <img src="iso.png" alt="ISO 27001:2022 Certification">
                     <div class="iso-text">An ISO 27001:2022 Certified Company</div>
+                </div>
             </div>
-        </div>
         </div>
     </footer>
 
@@ -1871,7 +2054,7 @@ line-height: normal;
         // Array of content to loop through
         const contentArray = [
     {
-        header: 'What If Managing Your Institution Was as Easy as a <span style="color:#2D2D96;font-family:dessau;font-weight:400;">Click</span>?',
+        header: 'What If Managing Your Institution Was as Easy<br>as a <span style="color:#2D2D96;font-family:dessau;font-weight:400;">Click</span>?',
         text: 'Simplify complex educational processes with our all-in-one ERP solution—automating everything from admissions to fee management seamlessly.'
     },
     {
@@ -1879,7 +2062,7 @@ line-height: normal;
                 text: "Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments."
     },
     {
-                header: 'Whats Holding Your Institution Back from Digital <span style="color:#FFDE21;font-family:dessau;font-weight:400;">Exellence</span>?',
+                header: 'Whats Holding Your Institution Back from<br>Digital <span style="color:#FFDE21;font-family:dessau;font-weight:400;">Exellence</span>?',
         text: "Drive innovation with a cloud-based ERP designed to enhance student management, automate tasks, and provide real-time insights."
     },
 ];
@@ -2030,5 +2213,118 @@ changeContent();
             });
         });
     </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get the specific Learn More button from the hero section
+        const heroLearnMoreBtn = document.querySelector('.hero-button-container .hero-button');
+        
+        // Get the about section
+        const aboutSection = document.querySelector('.about');
+        
+        // Add click event listener only to the hero section's Learn More button
+        heroLearnMoreBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get the target position (about section's top position relative to the viewport)
+          const targetPosition = aboutSection.getBoundingClientRect().top + window.pageYOffset;
+          const startPosition = window.pageYOffset;
+          const distance = targetPosition - startPosition;
+          const duration = 1500; // Longer duration for smoother scroll (1.5 seconds)
+          let startTimestamp = null;
+
+          function smoothScroll(currentTime) {
+            if (startTimestamp === null) {
+              startTimestamp = currentTime;
+            }
+
+            const timeElapsed = currentTime - startTimestamp;
+            const progress = Math.min(timeElapsed / duration, 1);
+
+            // Easing function for smooth acceleration and deceleration
+            const easeInOutCubic = progress => {
+              return progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            };
+
+            window.scrollTo(0, startPosition + (distance * easeInOutCubic(progress)));
+
+            if (timeElapsed < duration) {
+              requestAnimationFrame(smoothScroll);
+            }
+          }
+
+          requestAnimationFrame(smoothScroll);
+        });
+
+        // New scroll animation for the eduthalamus box button
+        const eduthalamusBoxBtn = document.querySelector('.about-box .hero-button');
+        const platformSection = document.querySelector('.platform-section');
+
+        eduthalamusBoxBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetPosition = platformSection.getBoundingClientRect().top + window.pageYOffset;
+          const startPosition = window.pageYOffset;
+          const distance = targetPosition - startPosition;
+          const duration = 1500;
+          let startTimestamp = null;
+
+          function smoothScrollToPlatform(currentTime) {
+            if (startTimestamp === null) {
+              startTimestamp = currentTime;
+            }
+
+            const timeElapsed = currentTime - startTimestamp;
+            const progress = Math.min(timeElapsed / duration, 1);
+
+            const easeInOutCubic = progress => {
+              return progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            };
+
+            window.scrollTo(0, startPosition + (distance * easeInOutCubic(progress)));
+
+            if (timeElapsed < duration) {
+              requestAnimationFrame(smoothScrollToPlatform);
+            }
+          }
+
+          requestAnimationFrame(smoothScrollToPlatform);
+        });
+      });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth transition for Home link
+        const homeLink = document.querySelector('.nav-links a[href="index.html"]');
+        
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Add fade out effect to current page
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            // Navigate to home page after fade out
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        });
+
+        // Handle page load animation for smooth entrance
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                document.body.style.opacity = '0';
+            }
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    });
+</script>
 </body>
 </html> 

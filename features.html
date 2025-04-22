@@ -4,18 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduthalamus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        body { 
+        /* Page Transition Styles */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Preload Optimization */
+        body {
             background-color: #f9f9f9;
+            font-family: 'Open Sans', sans-serif;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Optimize Images */
+        img {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            perspective: 1000;
+        }
+
+        /* Optimize Links */
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal h2, 
+        .modal p, 
+        .demo-form input, 
+        .demo-form button,
+        .nav-links a,
+        .request-demo,
+        .hero-heading,
+        .hero-subheading,
+        .button-text,
+        .card-title,
+        .card-description,
+        .more-title,
+        .more-description,
+        .feature-item h3,
+        .feature-item p,
+        .cta-text,
+        .footer-links a,
+        .footer-bottom,
+        .iso-text {
+            font-family: 'Open Sans', sans-serif;
+        }
 
         .modal-overlay {
     display: none;
@@ -50,10 +106,9 @@
 .modal h2 {
     color: #000;
     text-align: center;
-    font-family: Manrope;
     font-size: 34.573px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 120%;
     margin-bottom: 10px;
 }
@@ -61,7 +116,6 @@
 .modal p {
     color: #000;
     text-align: center;
-    font-family: "Open Sans";
     font-size: 10.058px;
     font-style: normal;
     font-weight: 400;
@@ -104,7 +158,6 @@
     background: #FFF;
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     padding: 15px;
-    font-family: "Open Sans";
     font-size: 14px;
     outline: none;
     width: 100%;
@@ -118,7 +171,6 @@
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     color: white;
     padding: 15px;
-    font-family: "Open Sans";
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
@@ -140,6 +192,14 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: none;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            perspective: 1000;
+            transform-style: preserve-3d;
         }
 
         .logo {
@@ -150,45 +210,53 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
         }
 
         .nav-links a {
-    position: relative;
-    text-decoration: none;
-    color: #1C1C1C;
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: color 0.3s ease;
-}
+            position: relative;
+            text-decoration: none;
+            color: #1C1C1C;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            transition: color 0.2s ease;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: color;
+        }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0%;
-    height: 2px;
-    background-color: #E63946;;
-    transition: width 0.4s ease, left 0.4s ease;
-    transform: translateX(-50%);
-}
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background-color: #E63946;
+            transition: width 0.2s ease, left 0.2s ease;
+            transform: translateX(-50%);
+            will-change: width, left;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
 
-.nav-links a:hover {
-    color: #E63946;;
-}
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #E63946;
+        }
 
-.nav-links a:hover::after {
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-.request-demo {
+        .request-demo {
             display: flex;
             width: 148px;
             padding: 9.705px 6.47px;
@@ -201,11 +269,10 @@
             color: #2D2D96;
             text-decoration: none;
             transition: all 0.3s;
-font-family: "Open Sans";
-font-size: 12.94px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+            font-size: 12.94px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
         }
 
         .request-demo:hover {
@@ -231,16 +298,19 @@ line-height: normal;
         .hero-left {
             flex: 1;
             min-width: 750px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .hero-heading {
-color: #1D3557;
-font-family: Manrope;
-font-size: 48px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-bottom: 20px;
+            color: #1D3557;
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 20px;
         }
 
         .hero-heading span {
@@ -249,80 +319,75 @@ margin-bottom: 20px;
 
         .hero-subheading {
             color: #1D3557;
-font-family: "Open Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: 28px; /* 155.556% */
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px; /* 155.556% */
             margin-bottom: 30px;
            
         }
 
         .hero-button {
-  /* Existing button styles */
-  display: flex;
-  width: 150px;
-  height: 48px;
-  padding: 2px 2px 2px 21px;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background-color: #ff4757;
-  color: white;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
-  transition: all 0.3s;
-  /* Add border to visualize the container */
-  border: 2px solid #ff4757;
-}
+            display: flex;
+            width: 159px;
+            height: 48px;
+            padding: 2px;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 192px;
+            background: #E63946;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
 
-.button-text {
-    font-family: "Open Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 700;
-  position: relative;
-  z-index: 2;
-  transition: color 0.3s 0.1s;
-}
+        .button-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            z-index: 2;
+            transition: color 0.25s ease-in-out;
+            padding: 0;
+            margin: 0;
+            padding-left: 24px;
+            display: flex;
+            align-items: center;
+        }
 
-.circle {
-  position: absolute;
-  right: -4px;
-  width: 54px;
-  height: 54px;
-  background: white;
-  border-radius: 50%;
-  z-index: 1;
-  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-  /* Initial gap */
-  box-shadow: inset 0 0 0 4px #ff4757;
-}
+        .circle {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border-radius: 192px;
+            z-index: 1;
+            right: 2px;
+            top: 2px;
+            transition: width 0.25s ease-in-out;
+        }
 
+        .arrow {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #E63946;
+            font-size: 16px;
+            z-index: 3;
+            pointer-events: none;
+        }
 
-.arrow {
-    left: 26px;
-    color: #ff4757;
-    z-index: 2; /* Same as button-text */
-    position: relative;
-}
-.hero-button:hover .circle {
-  /* Expand to fill width/height with 4px gap */
-  width: calc(100% + 6px);
-  height: calc(100% + 2px);
-  border-radius: 50px; /* Slightly less than button's radius */
-  /* right: 4px;
-  top: 4px; */
-  /* Maintain gap */
-  box-shadow: inset 0 0 0 2px #ff4757;
-}
+        .hero-button:hover .circle {
+            width: calc(100% - 4px);
+        }
 
-.hero-button:hover .button-text {
-  color: #ff4757;
-}
+        .hero-button:hover .button-text {
+            color: #E63946;
+        }
 
         .hero-right {
             flex: 1;
@@ -412,22 +477,20 @@ font-weight: 700;
         }
 
         .card-title {
-color: #1D3557;
-font-family: Manrope;
-font-size: 31px;
-font-style: normal;
-font-weight: 800;
-line-height: 136.687%; /* 42.373px */
-margin-bottom: 10px;
+            color: #1D3557;
+            font-size: 31px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 136.687%;
+            margin-bottom: 10px;
         }
 
         .card-description {
             color: #1D3557;
-font-family: "Open Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
         }
 
         footer {
@@ -491,21 +554,20 @@ line-height: normal;
 
         .iso-text {
             color: #000;
-font-family: "Open Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
             text-align: center;
         }
 
         .footer-bottom {
             color: rgba(0, 0, 0, 0.50);
-font-family: Manrope;
-font-size: 12px;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
             text-align: center;
         }
 
@@ -530,8 +592,9 @@ line-height: normal;
                 text-align: center;
             }
 
-            .hero-heading {
-                font-size: 2.8rem;
+            .hero-left {
+                align-items: center;
+                min-width: unset;
             }
 
             .footer-left, .footer-right {
@@ -611,6 +674,8 @@ line-height: normal;
     </style>
 </head>
 <body>
+    <!-- Add page transition div -->
+    <div class="page-transition"></div>
 
     <div class="modal-overlay" id="demoModal">
         <div class="modal">
@@ -638,7 +703,7 @@ line-height: normal;
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="whyus.html">Why us?</a>
-            <a href="features.html">Features</a>
+            <a href="features.html" class="active">Features</a>
             <a href="contact.html">Contact</a>
         </div>
         <a href="#demo" class="request-demo">Request Demo →</a>
@@ -647,12 +712,13 @@ line-height: normal;
     <section class="hero-section">
         <div class="hero-container">
             <div class="hero-left">
-                <h1 class="hero-heading">Your Institution. Smarter. Faster.<br>AI-Optimized</h1>
+                <h1 class="hero-heading">Your Institution. Smarter.<br>Faster. AI-Optimized</h1>
                 <p class="hero-subheading">Empower your institution with AI-driven insights, smarter decision-making, and seamless automation. From student success to resource optimization, experience the future of education!</p>
                 <a href="#learn-more" class="hero-button">
-                    <span class="button-text">See features<span class="arrow">→</span></span>
+                    <span class="button-text">See Features</span>
                     <span class="circle"></span>
-                  </a>
+                    <span class="arrow">→</span>
+                </a>
             </div>
             <div class="hero-right">
                 <img src="features_image.png" alt="Eduthalamus Features" class="hero-image">
@@ -822,8 +888,9 @@ line-height: normal;
                 <div class="cta-container" style="margin-top:30px;">
             <p class="cta-text">Let <span class="edu">Edu</span><span class="thalamus">thalamus</span> take your school to the next level!</p>
             <a href="#learn-more" class="hero-button">
-                <span class="button-text">See features<span class="arrow">→</span></span>
+                <span class="button-text">Let's Connect</span>
                 <span class="circle"></span>
+                <span class="arrow">→</span>
             </a>
         </div>
     </section>
@@ -844,10 +911,9 @@ line-height: normal;
 
         .more-title {
             color: #1D3557;
-            font-family: Manrope;
             font-size: 48px;
             font-style: normal;
-            font-weight: 700;
+            font-weight: 600;
             line-height: normal;
             margin-bottom: 20px;
         }
@@ -855,7 +921,6 @@ line-height: normal;
         .more-description {
             color: #1D3557;
             text-align: center;
-            font-family: "Open Sans";
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
@@ -889,7 +954,6 @@ line-height: normal;
 
         .feature-item h3 {
             color: #16192C;
-            font-family: Manrope;
             font-size: 16px;
             font-style: normal;
             font-weight: 700;
@@ -900,7 +964,6 @@ line-height: normal;
         .feature-item p {
             color: #425466;
             font-feature-settings: 'salt' on;
-            font-family: "Open Sans";
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
@@ -941,7 +1004,6 @@ line-height: normal;
 
         .cta-text {
             color: #1D3557;
-            font-family: "Open Sans";
             font-size: 24px;
             font-style: normal;
             font-weight: 400;
@@ -951,7 +1013,6 @@ line-height: normal;
 
         .cta-text .edu {
             color: #0492DA;
-            font-family: "Open Sans";
             font-size: 24px;
             font-style: normal;
             font-weight: 700;
@@ -960,7 +1021,6 @@ line-height: normal;
 
         .cta-text .thalamus {
             color: #2D2D96;
-            font-family: "Open Sans";
             font-size: 24px;
             font-style: normal;
             font-weight: 700;
@@ -972,6 +1032,74 @@ line-height: normal;
                 flex-direction: column;
                 text-align: center;
             }
+        }
+
+        /* Add specific styles for this Let's Connect button */
+        .cta-container .hero-button {
+            display: flex;
+            width: 159px;
+            height: 48px;
+            padding: 2px;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 192px;
+            background: #E63946;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin: 0; /* Remove auto margin */
+        }
+
+        .cta-container .button-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            z-index: 2;
+            transition: color 0.25s ease-in-out;
+            letter-spacing: 0.2px;
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .cta-container .circle {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border-radius: 192px;
+            z-index: 1;
+            right: 2px;
+            top: 2px;
+            transition: all 0.25s ease-in-out;
+        }
+
+        .cta-container .arrow {
+            position: absolute;
+            right: 15px;
+            color: #E63946;
+            z-index: 2;
+            font-size: 13px;
+            font-weight: 300;
+            transition: color 0.25s ease-in-out;
+        }
+
+        /* Hover states for this specific button */
+        .cta-container .hero-button:hover .circle {
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+        }
+
+        .cta-container .hero-button:hover .button-text {
+            color: #E63946;
+        }
+
+        .cta-container .hero-button:hover .arrow {
+            color: #E63946;
         }
     </style>
       <script>
@@ -1013,6 +1141,86 @@ line-height: normal;
                 document.body.style.overflow = 'auto';
                 demoForm.reset();
             });
+
+            // Add smooth scroll for hero section's See Features button only
+            const heroSeeFeatures = document.querySelector('.hero-section .hero-button');
+            const featuresSection = document.querySelector('.features-cards');
+            
+            heroSeeFeatures.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetPosition = featuresSection.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 1500;
+                let startTimestamp = null;
+
+                function smoothScroll(currentTime) {
+                    if (startTimestamp === null) {
+                        startTimestamp = currentTime;
+                    }
+
+                    const timeElapsed = currentTime - startTimestamp;
+                    const progress = Math.min(timeElapsed / duration, 1);
+
+                    // Easing function for smooth acceleration and deceleration
+                    const easeInOutCubic = progress => {
+                        return progress < 0.5
+                            ? 4 * progress * progress * progress
+                            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                    };
+
+                    window.scrollTo(0, startPosition + (distance * easeInOutCubic(progress)));
+
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(smoothScroll);
+                    }
+                }
+
+                requestAnimationFrame(smoothScroll);
+            });
+
+            // Add smooth transition specifically for CTA Let's Connect button
+            const ctaLetsConnect = document.querySelector('.cta-container .hero-button');
+            
+            ctaLetsConnect.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add fade out effect to current page
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.5s ease';
+                
+                // Navigate to contact page after fade out
+                setTimeout(() => {
+                    window.location.href = 'contact.html';
+                }, 500);
+            });
+
+            // Handle page load animation for smooth entrance
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    document.body.style.opacity = '0';
+                }
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 100);
+            });
+
+            // Add smooth transition for Home link
+            const homeLink = document.querySelector('.nav-links a[href="index.html"]');
+            
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add fade out effect to current page
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.5s ease';
+                
+                // Navigate to home page after fade out
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 500);
+            });
         });
     </script>
  <footer>
@@ -1043,6 +1251,73 @@ line-height: normal;
         </div>
     </div>
 </footer>
+
+<script>
+    // Page Transition System
+    document.addEventListener('DOMContentLoaded', () => {
+        const pageTransition = document.querySelector('.page-transition');
+        const navLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([target="_blank"])');
+
+        // Preload pages
+        const preloadPage = (url) => {
+            return new Promise((resolve, reject) => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = url;
+                link.onload = resolve;
+                link.onerror = reject;
+                document.head.appendChild(link);
+            });
+        };
+
+        // Preload all internal pages
+        navLinks.forEach(link => {
+            if (link.href && link.href.startsWith(window.location.origin)) {
+                preloadPage(link.href);
+            }
+        });
+
+        // Handle page transitions
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.href && link.href.startsWith(window.location.origin)) {
+                    e.preventDefault();
+                    pageTransition.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        window.location.href = link.href;
+                    }, 200);
+                }
+            });
+        });
+
+        // Handle back/forward navigation
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                pageTransition.style.opacity = '0';
+            }
+        });
+
+        // Optimize initial page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            
+            // Add intersection observer for image loading
+            const images = document.querySelectorAll('img');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.setAttribute('loading', 'eager');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
+    });
+</script>
 
 </body>
 </html> 

@@ -4,18 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduthalamus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        body {
-            background-color: #f5f5f5;
+        html, body { 
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
+        body { 
+            background-color: #f9f9f9;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .modal h2, 
+        .modal p, 
+        .demo-form input, 
+        .demo-form button,
+        .nav-links a,
+        .request-demo,
+        .hero-heading,
+        .hero-subheading,
+        .button-text,
+        .card-title,
+        .card-description,
+        .more-title,
+        .more-description,
+        .feature-item h3,
+        .feature-item p,
+        .cta-text,
+        .footer-links a,
+        .footer-bottom,
+        .iso-text {
+            font-family: 'Open Sans', sans-serif;
+        }
 
         .navbar {
             display: flex;
@@ -27,6 +56,12 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: none;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .logo {
@@ -37,43 +72,51 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
         }
 
         .nav-links a {
-    position: relative;
-    text-decoration: none;
-    color: #1C1C1C;
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: color 0.3s ease;
-}
+            position: relative;
+            text-decoration: none;
+            color: #1C1C1C;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            transition: color 0.2s ease;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: color;
+        }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0%;
-    height: 2px;
-    background-color: #E63946;;
-    transition: width 0.4s ease, left 0.4s ease;
-    transform: translateX(-50%);
-}
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background-color: #E63946;
+            transition: width 0.2s ease, left 0.2s ease;
+            transform: translateX(-50%);
+            will-change: width, left;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
 
-.nav-links a:hover {
-    color: #E63946;;
-}
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #E63946;
+        }
 
-.nav-links a:hover::after {
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         .request-demo {
             display: flex;
@@ -87,12 +130,15 @@
             background-color: transparent;
             color: #2D2D96;
             text-decoration: none;
-            transition: all 0.3s;
-font-family: "Open Sans";
-font-size: 12.94px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+            transition: all 0.2s ease;
+            font-size: 12.94px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            will-change: background-color, color;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .request-demo:hover {
@@ -101,19 +147,20 @@ line-height: normal;
         }
 
         .contact-section {
-            padding: 120px 0 90px;
+            padding: 80px 0 80px;
             background-color: #1e3a5f;
             background-image: linear-gradient(rgba(30, 58, 95, 0.95), rgba(30, 58, 95, 0.95)), url('pattern-bg.png');
-            background-size: cover;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-container {
-            height: auto;
+            width: 100%;
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             position: relative;
-            padding: 0 40px;
+            padding: 0 20px;
             justify-content: space-between;
         }
 
@@ -125,28 +172,56 @@ line-height: normal;
         }
 
         .contact-left {
-            margin-left: 20px;
+            flex: 1;
+            margin: 18px 0 0 0;
             display: flex;
-            width: 451px;
-            height: 496px;
+            max-width: 400px;
+            height: fit-content;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            gap: 8.76px;
-            flex-shrink: 0;
-            border-radius: 20px;
+            gap: 16px;
+            border-radius: 16px;
             border: 0.73px solid #BDBDBD;
             background: #FFF;
             box-shadow: 0px 0px 14.6px 0px rgba(0, 0, 0, 0.10);
-            padding: 20px;
+            padding: 18px 24px 0;
         }
 
         .contact-heading {
-            font-size: 0.9rem;
+            font-size: 14px;
             line-height: 1.4;
-            margin-bottom: 15px;
-text-align: center;
-            max-width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .contact-heading .in {
+            color: #0095cc;
+            font-weight: 700;
+        }
+
+        .contact-heading .to {
+            color: #1d2d44;
+        }
+
+        .contact-heading .space {
+            color: #3f2e93;
+            font-weight: 700;
+        }
+
+        .contact-heading em {
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .contact-heading .highlight {
+            color: #2D2D96;
+            font-weight: 600;
+        }
+
+        .contact-heading span {
+            color: #2D2D96;
         }
 
         .contact-subheading {
@@ -160,12 +235,14 @@ text-align: center;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 8.76px;
+            gap: 16px;
+            margin-bottom: 0;
+            padding-bottom: 32px;
         }
 
         .form-row {
             display: flex;
-            gap: 8.76px;
+            gap: 12px;
             width: 100%;
         }
 
@@ -175,66 +252,94 @@ text-align: center;
 
         .form-input {
             width: 100%;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 0.5px solid rgba(203, 206, 211, 0.5);
             background-color: white;
-            color: #333;
-            font-size: 0.85rem;
+            color: #1D3557;
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            outline: none;
         }
 
         .form-input::placeholder {
-            color: #999;
+            color: #9CA3AF;
         }
 
         .form-input:focus {
-            outline: none;
-            border-color: #4834d4;
+            border-color: rgba(230, 57, 70, 0.5);
+            box-shadow: 0 0 0 0.5px rgba(230, 57, 70, 0.5);
+            caret-color: #4B5563;
         }
 
         .form-textarea {
-            min-height: 90px;
-            margin-bottom: 10px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-textarea:focus {
+            border-color: rgba(230, 57, 70, 0.5);
+            box-shadow: 0 0 0 0.5px rgba(230, 57, 70, 0.5);
+            caret-color: #4B5563;
         }
 
         .form-submit {
-            display: flex;
-            width: 211px;
-            height: 33px;
-            padding: 20px;
-    justify-content: center;
-    align-items: center;
-            gap: 7.3px;
-            flex-shrink: 0;
-    border-radius: 17.52px;
-    background: #E63946;
+            width: 180px;
+            height: 40px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            background-color: #E63946;
+            color: white;
             border: none;
-    color: #FFF;
-    font-family: "Open Sans";
-    font-size: 13.14px;
-    font-style: normal;
-    font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-}
+            display: block;
+            margin: 24px auto 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.4s ease;
+        }
 
         .form-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .form-submit:hover::before {
+            left: 100%;
+        }
+
+        .form-submit:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
         }
 
         .contact-right {
-            margin-right: 20px;
-            flex: 0.3;
+            flex: 1;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-    gap: 5px;
+            gap: 16px;
             padding-right: 0;
+            padding-left: 0;
             min-width: 300px;
             z-index: 1;
-}
+        }
         
         .contact-right::-webkit-scrollbar {
             width: 6px;
@@ -250,27 +355,40 @@ text-align: center;
             border-radius: 10px;
         }
 
-        .location-card {
+        .contact-right .location-card {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            padding: 12px 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 16px;
+            padding: 16px 16px 16px 12px;
             margin-bottom: 8px;
             width: 100%;
-            min-width: 280px;
-            max-width: 300px;
-            min-height: 120px;
+            max-width: 280px;
+            min-height: auto;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
-        
-        .location-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+        .contact-right .location-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
+
+        /* Remove any staggered delays */
+        .contact-right .location-card:nth-child(1),
+        .contact-right .location-card:nth-child(2) {
+            transition-delay: 0s;
+        }
+
+        .location-card {
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
         .location-card:first-child {
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -288,7 +406,7 @@ text-align: center;
         }
 
         .location-icon {
-            margin-top: 3px;
+            margin-top: 2px;
             flex-shrink: 0;
         }
 
@@ -300,12 +418,16 @@ text-align: center;
 
         .location-address {
             color: #1D3557;
-            font-family: "Open Sans";
+            font-family: 'Open Sans', sans-serif;
             font-size: 12px;
             font-style: normal;
             font-weight: 400;
-            line-height: 20px;
+            line-height: 18px;
             margin: 0;
+            padding-left: 4px;
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .location-contact {
@@ -359,165 +481,120 @@ text-align: center;
             gap: 40px;
         }
         footer {
-            background-color: #fff;
-            padding: 50px 0 20px;
-            border-top: 1px solid #eee;
+            background-color: rgb(249 250 251);
+            border-top: 1px solid rgb(229 231 235);
+            padding: 0 0 2.5rem 0;
         }
 
         .footer-container {
-            width:100%;
+            max-width: 1200px;
             margin: 0 auto;
-    
-            padding: 1rem 5%;
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .footer-left {
-            display: flex;
             align-items: center;
         }
 
+        .footer-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            max-width: none;
+        }
+
         .footer-center {
-            margin-left: 69px;
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 1.25rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-nav a {
+            color: rgb(55 65 81);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: rgb(37 99 235);
+        }
+
+        .footer-copyright {
+            color: rgb(107 114 128);
+            font-size: 0.75rem;
         }
 
         .footer-right {
+            flex: 1;
             display: flex;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: #333;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #0066cc;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
         }
 
         .footer-certification {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
+        }
+
+        .footer-certification img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            max-width: none;
         }
 
         .iso-text {
-            color: #000;
-font-family: "Open Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+            color: rgb(55 65 81);
+            font-size: 0.75rem;
             text-align: center;
         }
 
-        .footer-bottom {
-            color: rgba(0, 0, 0, 0.50);
-font-family: Manrope;
-font-size: 12px;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
-            text-align: center;
-        }
-        @media (max-width: 1100px) {
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
-            
-            .contact-left, .contact-right {
-                width: 100%;
-                flex: 1;
-                margin-bottom: 30px;
-            }
-            
-            .middle-header {
-                margin-top: 0;
-            }
-            .contact-middle {
-        max-width: 100%;
-        order: -1; /* Move it above other elements */
-        margin-bottom: 30px;
-    }
-    
-    .contact-image {
-        max-width: 80%;
-    }
-            
-            .contact-right {
-                flex-direction: row;
-                flex-wrap: wrap;
-                max-height: none;
-                overflow-y: visible;
-            }
-            
-            .location-card {
-                width: calc(50% - 10px);
-                margin-bottom: 20px;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .middle-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .contact-left {
-                padding: 30px;
-            }
-            
-            .form-row {
+            .footer-container {
                 flex-direction: column;
-                gap: 10px;
+                gap: 2rem;
+                text-align: center;
             }
-            
-            .contact-heading {
-                font-size: 1.8rem;
-            }
-            
-            .contact-right {
-                flex-direction: column;
-            }
-            
-            .location-card {
-                width: 100%;
-            }
-            
-            .footer-left {
-                flex-direction: column;
-            }
-            
-            .footer-logo {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            
-            .footer-links {
-                flex-wrap: wrap;
+
+            .footer-left, .footer-right {
                 justify-content: center;
             }
-        }
 
+            .footer-nav {
+                gap: 1.5rem;
+            }
+
+            .footer-right {
+                align-items: center;
+            }
+        }
 
         .contact-left {
   opacity: 0;
@@ -530,16 +607,9 @@ line-height: normal;
   transform: translateY(0);
 }
 
-
-.location-card {
-  opacity: 0;
-  transform: translateX(50px); /* Starts from right */
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
 .location-card.visible {
-  opacity: 1;
-  transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .location-card:nth-child(1) {
@@ -555,34 +625,29 @@ line-height: normal;
 }
 
 .middle-header {
-    text-align: left;
     color: white;
-    margin-bottom: 30px;
     min-width: 400px;
-    padding-left: 20px;
+    padding-left: 0;
+    text-align: left;
+    padding-top: 32px;
 }
 
 .middle-header h2 {
     color: #FFF;
-    font-family: Manrope;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
-    margin-bottom: 10px;
-    white-space: nowrap;
-    min-width: 400px;
+    text-align: left;
+    margin-bottom: 8px;
 }
 
 .middle-header p {
     color: #FFF;
-    font-family: "Open Sans";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.32px;
-    max-width: 100%;
+    max-width: 500px;
+    text-align: left;
     margin: 0;
 }
 
@@ -594,16 +659,13 @@ line-height: normal;
     justify-content: center;
     padding: 20px;
     position: relative;
-    min-width: 0; /* Changed from 450px */
-    max-width: 450px; /* Added */
-    width: 100%; /* Added */
-    min-width: 450px;
-    overflow: hidden;
+    width: 100%;
+    max-width: 450px;
 }
 
 .contact-image {
-    max-width: 100%; /* Changed from 'none' */
-    width: 100%; /* Changed from fixed 450px */
+    max-width: 100%;
+    width: 100%;
     max-height: 500px;
    
     height: auto;
@@ -638,9 +700,18 @@ h3 {
 .find-us-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: white;
-    margin: 12px 0;
+    gap: 16px;
+    margin: 24px 0 8px 0;
+}
+
+.find-us-header h3 {
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .find-us-icon {
@@ -648,7 +719,10 @@ h3 {
     align-items: center;
 }
 
-
+.find-icon-wrapper {
+    display: flex;
+    align-items: center;
+}
 
 .modal-overlay {
     display: none;
@@ -677,13 +751,13 @@ h3 {
     animation: modalFadeIn 0.3s ease-out;
     width: 90%;
     max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 
 .modal h2 {
     color: #000;
     text-align: center;
-    font-family: Manrope;
     font-size: 34.573px;
     font-style: normal;
     font-weight: 400;
@@ -694,7 +768,6 @@ h3 {
 .modal p {
     color: #000;
     text-align: center;
-    font-family: "Open Sans";
     font-size: 10.058px;
     font-style: normal;
     font-weight: 400;
@@ -737,7 +810,6 @@ h3 {
     background: #FFF;
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     padding: 15px;
-    font-family: "Open Sans";
     font-size: 14px;
     outline: none;
     width: 100%;
@@ -751,7 +823,6 @@ h3 {
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     color: white;
     padding: 15px;
-    font-family: "Open Sans";
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
@@ -762,11 +833,119 @@ h3 {
 .demo-form button:hover {
     background-color: #162841;
 }
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page Transition Styles */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Preload Optimization */
+body {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize Images */
+img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    perspective: 1000;
+}
+
+/* Optimize Links */
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.navbar {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform-style: preserve-3d;
+}
+
+.nav-links a {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+.students-image {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    width: auto;
+    height: 420px;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.contact-info-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 10;
+}
+
+.contact-info-top a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contact-info-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+.location-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
     </style>
 </head>
 <body>
+    <!-- Add page transition div -->
+    <div class="page-transition"></div>
 
-    
     <div class="modal-overlay" id="demoModal">
         <div class="modal">
             <button class="modal-close">&times;</button>
@@ -792,17 +971,31 @@ h3 {
             <a href="index.html">Home</a>
             <a href="whyus.html">Why us?</a>
             <a href="features.html">Features</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="active">Contact</a>
         </div>
         <a href="#demo" class="request-demo">Request Demo →</a>
     </nav>
 
     <section class="contact-section">
         <div class="contact-container">
+            <div class="contact-info-top">
+                <a href="tel:+919962228160">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    +91 99622 28160 / +91 98844 90855
+                </a>
+                <a href="mailto:info@chaloschools.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    info@chaloschools.com
+                </a>
+            </div>
             <div class="contact-content">
                 <div class="contact-left">
-                    <p class="contact-heading">Step <span style="color: #0066cc;">into</span> our <span style="color: #4834d4;">space </span>where technology powers education and innovation shapes the future.</p>
-                    
+                    <p class="contact-heading">Step <span class="in">in</span><span class="to">to</span> our <span class="space">space</span> where technology powers education and innovation shapes the future.</p>
                     <form class="contact-form">
                         <div class="form-row">
                             <div class="form-group">
@@ -838,20 +1031,20 @@ h3 {
                 <div class="contact-right">
                     <div class="middle-header">
                         <h2>Got Questions?</h2>
-                        <p>Reach out to us! We are always happy to help. Let's build smarter schools together</p>
+                        <p>Reach out to us! We are always happy to help. Let's build <br>smarter schools together</p>
                     </div>
                     
-                    <div style="display: flex; align-items: center; gap: 10px; color: white; margin: 12px 0;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin: 5px 0;">
                         <div style="display: flex; align-items: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="39" height="33" viewBox="0 0 39 33" fill="none">
                                 <path d="M37.1296 3.464C35.2103 1.76478 32.4511 0.740958 29.6752 0.483086C28.3903 0.370774 27.1112 0.385741 25.8425 0.63404C24.6496 0.857685 23.469 1.3571 22.418 1.89319C21.9176 2.14949 21.4447 2.44706 20.9972 2.74348C20.4259 3.13049 19.8546 3.5175 19.3363 3.94464C18.3498 4.77542 17.7342 5.88709 17.3486 6.98845C16.9402 8.15459 16.7902 9.37289 16.7669 10.5642C16.7494 11.8829 16.8624 13.2594 17.2271 14.5396C17.6192 15.8611 18.4683 17.0982 19.9076 17.7988C21.1632 18.4013 22.6997 18.4172 23.9493 17.7447C25.074 17.1415 25.8467 16.1078 26.1576 15.0523C26.4893 13.8896 26.206 12.712 25.4696 11.7036C23.9154 9.58413 20.7153 8.43134 17.8362 8.15685C16.3451 8.01129 14.7613 8.08245 13.3224 8.5297C11.7833 9.02396 10.5697 9.92871 9.72711 11.1144C8.83724 12.3872 8.31357 13.8348 7.81258 15.2177C7.26528 16.7089 6.79556 18.2178 6.45451 19.7423C5.74593 22.7712 5.39878 25.8688 5.40926 28.9504C5.41803 29.7152 5.45139 30.4576 5.51124 31.2201C5.56729 31.8978 6.84452 31.8404 6.78848 31.1627C6.37787 25.4422 7.32112 19.6609 9.53322 14.2051C10.0172 13.0143 10.5485 11.7364 11.5549 10.7772C12.4383 9.92978 13.6699 9.42807 14.967 9.24226C16.3407 9.05301 17.7523 9.13837 19.0703 9.41924C20.3363 9.68119 21.6099 10.1128 22.6632 10.7669C23.6899 11.401 24.5464 12.234 24.9006 13.2808C25.1951 14.1391 24.9324 15.1286 24.3792 15.9187C23.8241 16.6663 22.9529 17.2156 21.9292 17.2191C20.6491 17.2128 19.6138 16.3878 19.0364 15.4998C18.2943 14.3641 18.2049 12.944 18.0966 11.6735C18.0243 10.6353 18.0789 9.57006 18.2621 8.52031C18.4717 7.49063 18.8092 6.45521 19.4588 5.53329C20.0849 4.65495 21.1055 4.01393 22.0495 3.37636C22.9444 2.78352 23.948 2.33457 25.0066 1.96817C25.9885 1.60522 26.9308 1.49913 28.0047 1.47214C30.3832 1.42903 32.8934 2.03893 34.8399 3.20554C35.3661 3.52198 35.8165 3.86309 36.2689 4.24661C36.5083 4.44841 36.9416 4.40769 37.163 4.20644C37.4089 3.98284 37.369 3.6658 37.1296 3.464Z" fill="white"/>
                                 <path d="M12.5568 21.6789C11.3097 24.1155 9.8279 26.4564 8.16349 28.7205C7.75306 29.2704 7.31804 29.8425 6.88111 30.3723C6.71088 30.5713 6.5435 30.8338 6.29473 30.9938C6.12068 31.1079 6.06768 31.0678 5.93329 30.925C5.7194 30.7221 5.55565 30.4956 5.39189 30.2692C5.17515 30.0026 4.983 29.7136 4.79084 29.4247C4.40844 28.8892 4.07617 28.3303 3.7685 27.749C3.09633 26.4613 2.57457 25.1032 2.23162 23.737C2.16814 23.4635 1.72627 23.3133 1.42354 23.4119C1.06973 23.5128 0.928852 23.7955 1.01883 24.089C1.36082 25.434 1.85513 26.7509 2.52634 28.0173C2.86242 28.6611 3.22404 29.3038 3.63485 29.9018C4.01821 30.4584 4.40348 31.0575 4.88615 31.546C5.42278 32.0957 6.2261 32.3147 6.97528 31.8985C7.64878 31.5069 8.07808 30.8074 8.51406 30.2564C9.45788 29.045 10.3487 27.7934 11.1619 26.524C12.0707 25.1016 12.9274 23.6602 13.68 22.1811C13.8218 21.9196 13.7309 21.6049 13.4177 21.4702C13.1291 21.3131 12.6731 21.4186 12.5568 21.6789Z" fill="white"/>
                             </svg>
                         </div>
-                        <h3 style="margin: 0; font-size: 1rem;">Find Us Here</h3>
-                </div>
+                        <h3 style="margin: 0; font-size: 24px; color: white; font-weight: 600; font-family: 'Open Sans', sans-serif;">Find Us Here</h3>
+                    </div>
                     
-                    <div class="location-card">
+                    <div class="location-card" onclick="window.open('https://maps.app.goo.gl/MqracPc4sJZqNQMu5', '_blank')" style="cursor: pointer;">
                         <div class="location-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                 <path d="M8.00608 1.00073C6.54683 1.00245 5.14783 1.5829 4.11598 2.61475C3.08413 3.6466 2.50368 5.0456 2.50196 6.50486C2.50021 7.69736 2.88974 8.85751 3.61079 9.80733C3.61079 9.80733 3.7609 10.005 3.78542 10.0335L8.00608 15.0112L12.2287 10.031C12.2508 10.0045 12.4014 9.80733 12.4014 9.80733L12.4019 9.80583C13.1226 8.85642 13.5119 7.69681 13.5102 6.50486C13.5085 5.0456 12.928 3.6466 11.8962 2.61475C10.8643 1.5829 9.46534 1.00245 8.00608 1.00073ZM8.00608 8.50636C7.61022 8.50636 7.22325 8.38897 6.89411 8.16904C6.56496 7.94911 6.30843 7.63652 6.15694 7.2708C6.00545 6.90507 5.96581 6.50264 6.04304 6.11438C6.12027 5.72613 6.31089 5.3695 6.59081 5.08958C6.87072 4.80967 7.22736 4.61904 7.61561 4.54181C8.00386 4.46459 8.4063 4.50422 8.77202 4.65571C9.13775 4.8072 9.45034 5.06374 9.67027 5.39288C9.89019 5.72203 10.0076 6.109 10.0076 6.50486C10.0069 7.03548 9.79583 7.54419 9.42062 7.9194C9.04541 8.29461 8.53671 8.50569 8.00608 8.50636Z" fill="#1D3557"/>
@@ -860,134 +1053,194 @@ h3 {
                         <p class="location-address">Inspace Edu Solutions Private Limited, AA Business Centre, 4th Floor, Old Door No.94/1 & 2, New No.27 and 28, East Park Road, Shenoy Nagar, Chennai 600030, Tamil Nadu, India.</p>
                     </div>
                     
-                    <div class="location-card">
+                    <div class="location-card" onclick="window.open('https://maps.app.goo.gl/RCaocpNnZVSRa1E77', '_blank')" style="cursor: pointer;">
                         <div class="location-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                 <path d="M8.00608 1.00073C6.54683 1.00245 5.14783 1.5829 4.11598 2.61475C3.08413 3.6466 2.50368 5.0456 2.50196 6.50486C2.50021 7.69736 2.88974 8.85751 3.61079 9.80733C3.61079 9.80733 3.7609 10.005 3.78542 10.0335L8.00608 15.0112L12.2287 10.031C12.2508 10.0045 12.4014 9.80733 12.4014 9.80733L12.4019 9.80583C13.1226 8.85642 13.5119 7.69681 13.5102 6.50486C13.5085 5.0456 12.928 3.6466 11.8962 2.61475C10.8643 1.5829 9.46534 1.00245 8.00608 1.00073ZM8.00608 8.50636C7.61022 8.50636 7.22325 8.38897 6.89411 8.16904C6.56496 7.94911 6.30843 7.63652 6.15694 7.2708C6.00545 6.90507 5.96581 6.50264 6.04304 6.11438C6.12027 5.72613 6.31089 5.3695 6.59081 5.08958C6.87072 4.80967 7.22736 4.61904 7.61561 4.54181C8.00386 4.46459 8.4063 4.50422 8.77202 4.65571C9.13775 4.8072 9.45034 5.06374 9.67027 5.39288C9.89019 5.72203 10.0076 6.109 10.0076 6.50486C10.0069 7.03548 9.79583 7.54419 9.42062 7.9194C9.04541 8.29461 8.53671 8.50569 8.00608 8.50636Z" fill="#1D3557"/>
                             </svg>
                         </div>
-                        <p class="location-address">(Development Center) 1st Floor, No.1, MSP Towers, Vasanth Nagar, Udayanpatti Road, K K Nagar, Trichy - 620021, Tamil Nadu, India.</p>
+                        <p class="location-address">Malaysia (Business Partner) MarcPro Sdn. Bhd. 23-1, Premier Suite, Menara 1 Mont Kiara, 50480 Kuala Lumpur</p>
                     </div>
                 </div>
-
-                <div class="contact-middle">
-                    <img src="contact_frame.png" alt="Contact Us" class="contact-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFNUU3RUIiLz48cGF0aCBkPSJNMTgyIDIwMEgyMThNMTUwIDE1MEgyNTBNMTUwIDI1MEgyNTAiIHN0cm9rZT0iIzk0QTNCOCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+'">
-                </div>
             </div>
+            <img src="contact-page-image.png" 
+                 alt="Students using laptops with headphones" 
+                 class="students-image"
+                 onerror="this.style.display='none'"
+                 onload="this.style.display='block'">
         </div>
     </section>
 
     <footer>
         <div class="footer-container">
             <div class="footer-left">
-       <div class="logo">
-            <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
-        </div>
+                <div class="footer-logo">
+                    <img src="edu_logo.png" alt="eduthalamus">
+                </div>
             </div>
             
             <div class="footer-center">
-                <div class="nav-links" style="margin-bottom:20px;">
+                <nav class="footer-nav">
                     <a href="index.html">Home</a>
                     <a href="whyus.html">Why us?</a>
                     <a href="features.html">Features</a>
                     <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-bottom">
+                </nav>
+                <div class="footer-copyright">
                     © 2025 All Rights Reserved
                 </div>
             </div>
 
             <div class="footer-right">
                 <div class="footer-certification">
-                    <img src="iso.png" alt="ISO 27001:2022 Certified" style="height: 60px;">
+                    <img src="iso.png" alt="ISO 27001:2022 Certification">
                     <div class="iso-text">An ISO 27001:2022 Certified Company</div>
                 </div>
             </div>
         </div>
     </footer>
-</body>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const contactLeft = document.querySelector(".contact-left");
+    <script>
+        // Page Transition System
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageTransition = document.querySelector('.page-transition');
+            const navLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([target="_blank"])');
 
-    const contactObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          contactLeft.classList.add("visible");
-          contactObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
+            // Preload pages
+            const preloadPage = (url) => {
+                return new Promise((resolve, reject) => {
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.href = url;
+                    link.onload = resolve;
+                    link.onerror = reject;
+                    document.head.appendChild(link);
+                });
+            };
 
-    contactObserver.observe(contactLeft);
-  });
-</script>
+            // Preload all internal pages
+            navLinks.forEach(link => {
+                if (link.href && link.href.startsWith(window.location.origin)) {
+                    preloadPage(link.href);
+                }
+            });
 
+            // Handle page transitions
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.href && link.href.startsWith(window.location.origin)) {
+                        e.preventDefault();
+                        pageTransition.style.opacity = '1';
+                        
+                        setTimeout(() => {
+                            window.location.href = link.href;
+                        }, 200);
+                    }
+                });
+            });
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const locationCards = document.querySelectorAll(".location-card");
+            // Handle back/forward navigation
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted) {
+                    pageTransition.style.opacity = '0';
+                }
+            });
 
-    const locationObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          locationObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
+            // Optimize initial page load
+            window.addEventListener('load', () => {
+                document.body.style.opacity = '1';
+                
+                // Add intersection observer for image loading
+                const images = document.querySelectorAll('img');
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.setAttribute('loading', 'eager');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
 
-    locationCards.forEach((card) => {
-      locationObserver.observe(card);
-    });
-  });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('demoModal');
-        const demoButtons = document.querySelectorAll('.request-demo');
-        const closeButton = document.querySelector('.modal-close');
-        const demoForm = document.getElementById('demoForm');
-
-        // Open modal when demo buttons are clicked
-        demoButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                images.forEach(img => imageObserver.observe(img));
             });
         });
 
-        // Close modal when close button is clicked
-        closeButton.addEventListener('click', function() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
+        document.addEventListener("DOMContentLoaded", () => {
+            const contactLeft = document.querySelector(".contact-left");
+
+            const contactObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        contactLeft.classList.add("visible");
+                        contactObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            contactObserver.observe(contactLeft);
         });
 
-        // Close modal when clicking outside
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
+        document.addEventListener("DOMContentLoaded", () => {
+            const locationCards = document.querySelectorAll(".contact-right .location-card");
+            
+            const locationObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "50px"
+            });
+
+            locationCards.forEach((card) => {
+                locationObserver.observe(card);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('demoModal');
+            const demoButtons = document.querySelectorAll('.request-demo');
+            const closeButton = document.querySelector('.modal-close');
+            const demoForm = document.getElementById('demoForm');
+
+            // Open modal when demo buttons are clicked
+            demoButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            // Close modal when close button is clicked
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Handle form submission
+            demoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for your interest! We will contact you soon.');
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }
+                demoForm.reset();
+            });
         });
-
-        // Handle form submission
-        demoForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            alert('Thank you for your interest! We will contact you soon.');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            demoForm.reset();
-        });
-    });
-</script>
-
+    </script>
+</body>
 </html> 
