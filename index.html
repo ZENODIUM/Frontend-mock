@@ -1131,6 +1131,9 @@ font-style: normal;
             .stats {
                 display: none;
             }
+            .user-group-divider {
+                display: none;
+            }
 
             /* Adjust hero content for mobile */
             .hero-content {
@@ -1148,14 +1151,16 @@ font-style: normal;
             }
 
             .hero-button-container {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                margin: 2rem auto;
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
+        position: absolute;
+        bottom: 60px;
+        left: 80%;
+        transform: translateX(65%);
+        width: auto;
+        z-index: 10;
+    }
+    
+
+
 
             /* Adjust client logos spacing in mobile view */
             .logo-container {
@@ -1190,7 +1195,7 @@ font-style: normal;
                 padding: 0 10px;
             }
 
-            .about-box .hero-button {
+            .about-box {
                 margin: 1.5rem auto 0;
                 display: block;
             }
@@ -1463,7 +1468,7 @@ font-style: normal;
     .slider-nav {
         position: relative;
         right: auto;
-        bottom: auto;
+        bottom: -50px;
         justify-content: center;
         margin-top: 20px;
     }

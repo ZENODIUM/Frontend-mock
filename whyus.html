@@ -393,31 +393,44 @@
                 text-align: center;
             }
 
-            .results-container {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .results-left {
-                text-align: center;
-                padding-right: 0;
-                margin-bottom: 40px;
-            }
-
-            .results-heading {
-                text-align: center;
-            }
-
-            .results-subheading {
-                text-align: center;
-            }
-
-            .results-right {
-                align-items: center;
-                text-align: center;
-            }
+            @media (max-width: 768px) {
+    .results-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .results-left, 
+    .results-right {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 20px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-bottom: 60px;
+    }
+    
+    .results-heading
+     {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+     }
+    .results-subheading,
+    .results-right p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* If there's any content that needs forced centering */
+    .results-right > * {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
 
             .benefit-item {
                 text-align: center;
@@ -588,6 +601,7 @@
             width: 159px;
             height: 48px;
             padding: 2px;
+            margin-bottom: 40px; 
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
@@ -1008,6 +1022,8 @@ box-shadow: -3px 4px 4px 0px rgba(0, 0, 0, 0.25);
             font-weight: 700;
             line-height: normal;
             margin-bottom: 48px;
+        
+           
         }
 
         .results-subheading {
@@ -1204,6 +1220,20 @@ box-shadow: -3px 4px 4px 0px rgba(0, 0, 0, 0.25);
                 align-items: center;
             }
         }
+        .benefit-icon {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .benefit-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
 
         .hero-right h1 {
