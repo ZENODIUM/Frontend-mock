@@ -1031,6 +1031,169 @@ font-style: normal;
                 flex-direction: column;
                 align-items: center;
             }
+
+            /* Reorganize solutions section for mobile */
+            .solutions-content {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+                min-height: 2500px; /* Significantly increased height */
+            }
+
+            .solutions-left {
+                order: 1;
+                width: 100%;
+                min-height: 2000px; /* Significantly increased height */
+            }
+
+            .solutions-right {
+                order: 2;
+                width: 100%;
+                padding: 20px;
+                margin-top: 0;
+                min-height: 800px; /* Increased height */
+            }
+
+            /* Move circle image above solutions in mobile */
+            .slide-content {
+                display: flex;
+                flex-direction: column;
+                min-height: 1800px; /* Significantly increased height */
+            }
+
+            .circle-wrapper {
+                order: 1;
+                margin-bottom: 30px;
+                min-height: 300px;
+            }
+
+            .cards-wrapper {
+                order: 2;
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 1500px; /* Significantly increased height */
+                padding-bottom: 50px; /* Added padding at bottom */
+            }
+
+            /* Adjust solution cards for mobile */
+            .solution-card {
+                margin-bottom: 20px; /* Increased spacing between cards */
+                width: 90%;
+                max-width: 280px;
+                padding: 15px;
+                min-height: auto;
+            }
+
+            .solution-card h3 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .solution-card p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            /* Adjust platform section for mobile */
+            .platform-section {
+                padding: 20px;
+                text-align: center;
+                min-height: 500px; /* Increased height */
+                margin-top: 50px; /* Added margin at top */
+            }
+
+            .text-block {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .heading-block h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+
+            .subheading {
+                font-size: 16px;
+                line-height: 1.5;
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            /* Hide Saturn and GIF in mobile view */
+            .saturn-wrapper {
+                display: none;
+            }
+
+            /* Hide stats cards in mobile view */
+            .stats {
+                display: none;
+            }
+
+            /* Adjust hero content for mobile */
+            .hero-content {
+                text-align: center;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-button-container {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin: 2rem auto;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Adjust client logos spacing in mobile view */
+            .logo-container {
+                padding: 5px;
+                gap: 5px;
+            }
+
+            .client-logos {
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            /* Fix about box content overflow */
+            .about-box {
+                height: auto;
+                min-height: 450px;
+                padding: 1.5rem;
+                margin-top: 50px;
+                overflow: hidden;
+            }
+
+            .about-box h2 {
+                font-size: 36px;
+                margin-bottom: 1rem;
+            }
+
+            .about-box p {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-top: 1rem;
+                padding: 0 10px;
+            }
+
+            .about-box .hero-button {
+                margin: 1.5rem auto 0;
+                display: block;
+            }
         }
 
 
@@ -1075,7 +1238,7 @@ font-style: normal;
 
 .hero-button-container {
     position: absolute;
-    bottom: 100px; /* Adjust this value based on your design */
+    bottom: 60px; /* Adjust this value based on your design */
     left: 5%;
     z-index: 10;
     transition: none; /* Disable any transitions */
@@ -1511,6 +1674,98 @@ font-style: normal;
 }
         
     </style>
+    <style>
+        /* Add these new styles before the existing media queries */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #1C1C1C;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: white;
+            padding: 80px 20px 20px;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            color: #1C1C1C;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #E63946;
+        }
+
+        .mobile-request-demo {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 1px solid #2D2D96;
+            border-radius: 4px;
+            color: #2D2D96;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .mobile-request-demo:hover {
+            background-color: #2D2D96;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .request-demo {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .navbar {
+                padding: 1rem 5%;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Add modal HTML right after body tag -->
@@ -1531,17 +1786,33 @@ font-style: normal;
         </div>
     </div>
 
+    <!-- Add this right after the opening body tag -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="whyus.html">Why us?</a>
+            <a href="features.html">Features</a>
+            <a href="contact.html">Contact</a>
+            <a href="#demo" class="mobile-request-demo">Request Demo →</a>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="logo">
             <img src="edu_logo.png" alt="eduthalamus" style="height: 40px;">
         </div>
         <div class="nav-links">
-            <a href="index.html"class="active">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="whyus.html">Why us?</a>
             <a href="features.html">Features</a>
             <a href="contact.html">Contact</a>
         </div>
         <a href="#demo" class="request-demo">Request Demo →</a>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <section class="hero-section">
@@ -1616,8 +1887,8 @@ font-style: normal;
             font-weight: 400;
             line-height: 28px;">Eduthalamus is the brain behind digital schools, offering a powerful ERP solution that streamlines school management with advanced technology. From student admissions and fee tracking to academic reporting and communication, Eduthalamus simplifies complex processes, empowering institutions to deliver smarter, more efficient, and future-ready education. Transform your school operations and embrace the future of digital learning with Eduthalamus</p>
                                 <a href="#learn-more" class="hero-button" style="margin-top: 30px;">
-                                    <span class="button-text">Learn More</span>
-                                    <span class="arrow">→</span>
+                                    <span class="button-text" >Learn More</span>
+                                    <span class="arrow" style="top:12px;">→</span>
                                     <span class="circle"></span>
                                   </a>
         </div>
@@ -1663,7 +1934,7 @@ font-style: normal;
                     <img src="circle_image.png" alt="Admission Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:280px;left:20px;height:140px; bottom: 100px;">
+                                <div class="solution-card solution-card-1" style="top:280px;left:20px;">
                                     <p><b><span>🔍</span> Smart Enquiry & Application Assessment</b></p>
                                     <p>Simplify your application journey with intuitive self-service enquiry forms. Receive quick responses, and let automation handle application evaluations.</p>
                     </div>
@@ -1728,7 +1999,7 @@ font-style: normal;
                                 <img src="circle_image3.png" alt="Scheduling Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:180px;left:50px;height:180px;">
+                                <div class="solution-card solution-card-1" style="top:180px;left:50px;">
                                     <p><b><span>📅</span> Effortless Course & Exam Scheduling</b></p>
                                     <p>Seamlessly plan teaching schedules, ensuring clash-free timetables, optimized room usage, and smooth exam planning across campuses. Our intelligent scheduling system considers faculty availability, delivery requirements, and student needs.</p>
                                 </div>
@@ -1753,17 +2024,17 @@ font-style: normal;
                                 <img src="circle_image4.png" alt="Procurement Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:110px;height:147px;">
+                                <div class="solution-card solution-card-1" style="top:160px;left:110px;">
                                     <p><b><span>📦</span> Automated Inventory Tracking & Replenishment</b></p>
                                     <p>Efficiently manage inventory across multiple locations with automated order processing and real-time stock tracking. Ensure seamless replenishment and reduce manual workload.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"style="top:300px;left:500px;height: 160px;px;">
+                                <div class="solution-card solution-card-2"style="top:300px;left:500px;">
                                     <p><b><span>📜</span> Seamless Contract & Compliance Management</b></p>
                                     <p>Ensure precision in supplier agreements with comprehensive contract management tools. Support academic supplies and services while maintaining compliance with institutional requirements.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:420px;left:20px;height:161px;">
+                                <div class="solution-card solution-card-3" style="top:420px;left:20px;">
                                     <p><b><span>🔍</span> End-to-End Procurement & Vendor Management</b></p>
                                     <p>Easily source, assess, and collaborate with suppliers for academic procurement needs. Maintain accurate vendor contracts, track transactions, and generate detailed reports to streamline supply chain operations.</p>
                                 </div>
@@ -1778,17 +2049,17 @@ font-style: normal;
                                 <img src="circle_image5.png" alt="Financial Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:110px;height: 130px;">
+                                <div class="solution-card solution-card-1" style="top:160px;left:110px;">
                                     <p><b><span>📊</span> Advanced Budgeting & Forecasting</b></p>
                                     <p>Align financial planning with institutional goals through integrated, driver-based budgeting and forecasting for better decision-making.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2" style="top:300px;left:500px;height: 130px;">
+                                <div class="solution-card solution-card-2" style="top:300px;left:500px;">
                                     <p><b><span>🌍</span> Seamless Parent & Stakeholder Engagement</b></p>
                                     <p>Enhance financial transparency with multiple engagement channels, including online portals, mobile apps, and in-person consultations.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:450px;left:40px;height: 140px;">
+                                <div class="solution-card solution-card-3" style="top:450px;left:40px;">
                                     <p><b><span>💰</span> Optimized Expense & Revenue Management</b></p>
                                     <p>Automate expense tracking, enforce policy compliance, and maintain up-to-date financial data with a flexible multi-company and multi-contribution system.</p>
                                 </div>
@@ -1808,7 +2079,7 @@ font-style: normal;
                                     <p>Monitor student and staff attendance in real time with automated reports and absence alerts. Seamlessly integrate with biometric or RFID systems for precise tracking.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"  style="top:200px;left:450px;height:132px;">
+                                <div class="solution-card solution-card-2"  style="top:200px;left:450px;">
                                     <p><b><span>📢</span> Centralized Communication & Messaging</b></p>
                                     <p>Streamline announcements, newsletters, and updates through an integrated communication platform, ensuring seamless engagement across the institution.</p>
                                 </div>
@@ -1833,7 +2104,7 @@ font-style: normal;
                                 <img src="circle_image7.png" alt="Curriculum Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1" style="top:160px;left:60px;height:157px;">
+                                <div class="solution-card solution-card-1" style="top:160px;left:60px;">
                                     <p><b><span>📖</span> Curriculum Design & Assessment</b></p>
                                     <p>Develop and organize a well-structured curriculum that meets educational standards. Create, administer, and automate grading for various assessments, including formative, summative, and standardized tests.</p>
                                 </div>
@@ -1843,7 +2114,7 @@ font-style: normal;
                                     <p>Leverage powerful dashboards to track student performance, identify improvement areas, and generate reports that inform instructional strategies.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:420px;left:20px;height:157px;">
+                                <div class="solution-card solution-card-3" style="top:420px;left:20px;">
                                     <p><b><span>📚</span> Student Support & Performance Tracking</b></p>
                                     <p>Provide seamless online platforms for assignments, submissions, and grading. Monitor student progress with data-driven insights, enabling personalized learning and continuous development.</p>
                                 </div>
@@ -1893,7 +2164,7 @@ font-style: normal;
                                     <p>Securely capture, store, and manage documents and attachments for seamless information access across your institution.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-2"style="top:350px;left:500px;height:132px;">
+                                <div class="solution-card solution-card-2"style="top:350px;left:500px;">
                                     <p><b><span>🔍</span> Effortless Document Search & Collaboration</b></p>
                                     <p>Integrate all records into a single content management system, enabling quick searchability, easy collaboration, and adherence to industry standards.</p>
                                 </div>
@@ -1913,7 +2184,7 @@ font-style: normal;
                                 <img src="circle_image10.png" alt="Transportation Solutions" class="circle-image">
                             </div>
                             <div class="cards-wrapper">
-                                <div class="solution-card solution-card-1"  style="top:160px;left:110px;height:132px;">
+                                <div class="solution-card solution-card-1"  style="top:160px;left:110px;">
                                     <p><b><span>🚌</span> Efficient Fleet & Maintenance Management</b></p>
                                     <p>Track and manage school buses with automated inventory, maintenance scheduling, and fuel consumption monitoring to ensure safety and efficiency.</p>
                                 </div>
@@ -1923,7 +2194,7 @@ font-style: normal;
                                     <p>Keep parents informed with a mobile app for live bus tracking, along with instant alerts on arrivals, delays, and schedule changes.</p>
                                 </div>
                                 
-                                <div class="solution-card solution-card-3" style="top:450px;left:40px;height:140px;">
+                                <div class="solution-card solution-card-3" style="top:450px;left:40px;">
                                     <p><b><span>📊</span> Data-Driven Insights & Optimization</b></p>
                                     <p>Generate detailed reports on route efficiency, vehicle usage, and driver performance, helping identify cost-saving opportunities and improvements.</p>
                                 </div>
@@ -2323,6 +2594,40 @@ changeContent();
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
+        });
+    });
+</script>
+
+<!-- Add this script at the end of the body, before the closing body tag -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const body = document.body;
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target) && mobileNav.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                body.style.overflow = '';
+            });
         });
     });
 </script>
