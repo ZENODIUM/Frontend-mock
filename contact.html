@@ -956,6 +956,7 @@ h3 {
     align-items: center;
 }
 
+/* Modal Styles */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -967,7 +968,7 @@ h3 {
     z-index: 1000;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 .modal {
@@ -975,36 +976,47 @@ h3 {
     background: #FFF;
     display: inline-flex;
     height: 501px;
-    padding: 50.289px 47.146px 0px 47.146px;
+    padding: 30px 47.146px 0px 47.146px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     animation: modalFadeIn 0.3s ease-out;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .modal h2 {
     color: #000;
     text-align: center;
+    font-family: Manrope;
     font-size: 34.573px;
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .modal p {
     color: #000;
     text-align: center;
-    font-size: 10.058px;
+    font-family: "Open Sans";
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%;
-    margin-bottom: 30px;
+    line-height: 10%;
+    margin-bottom: 70px;
 }
 
 .modal-close {
@@ -1042,6 +1054,7 @@ h3 {
     background: #FFF;
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     padding: 15px;
+    font-family: "Open Sans";
     font-size: 14px;
     outline: none;
     width: 100%;
@@ -1055,6 +1068,7 @@ h3 {
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     color: white;
     padding: 15px;
+    font-family: "Open Sans";
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
@@ -1064,6 +1078,16 @@ h3 {
 
 .demo-form button:hover {
     background-color: #162841;
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .modal-overlay {
+        padding-top: 60px;
+    }
 }
 
 @keyframes modalFadeIn {
@@ -1318,7 +1342,7 @@ a {
 
     <nav class="navbar">
         <div class="logo">
-            <img src="edu_logo.png" alt="eduthalamus" style="height: 55px;">
+            <img src="edu_logo.jpg" alt="eduthalamus" style="height: 55px;">
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -1444,7 +1468,7 @@ a {
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="edu_logo.png" alt="eduthalamus">
+                    <img src="edu_logo.jpg" alt="eduthalamus">
                 </div>
             </div>
             

@@ -32,7 +32,8 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Modal Styles */
+   
+/* Modal Styles */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -44,7 +45,7 @@
     z-index: 1000;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 .modal {
@@ -52,9 +53,9 @@
     background: #FFF;
     display: inline-flex;
     height: 501px;
-    padding: 50.289px 47.146px 0px 47.146px;
+    padding: 30px 47.146px 0px 47.146px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     animation: modalFadeIn 0.3s ease-out;
@@ -62,24 +63,37 @@
     max-width: 500px;
 }
 
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .modal h2 {
     color: #000;
     text-align: center;
+    font-family: Manrope;
     font-size: 34.573px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 120%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .modal p {
     color: #000;
     text-align: center;
-    font-size: 48px;
+    font-family: "Open Sans";
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%;
-    margin-bottom: 30px;
+    line-height: 10%;
+    margin-bottom: 70px;
 }
 
 .modal-close {
@@ -117,6 +131,7 @@
     background: #FFF;
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     padding: 15px;
+    font-family: "Open Sans";
     font-size: 14px;
     outline: none;
     width: 100%;
@@ -130,6 +145,7 @@
     box-shadow: 0px 2.514px 2.514px 0px rgba(0, 0, 0, 0.04);
     color: white;
     padding: 15px;
+    font-family: "Open Sans";
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
@@ -139,6 +155,16 @@
 
 .demo-form button:hover {
     background-color: #162841;
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .modal-overlay {
+        padding-top: 60px;
+    }
 }
         .navbar {
             display: flex;
@@ -824,7 +850,7 @@
         }
 
         .why-choose-section {
-            padding: 100px 0 0;
+            padding: 100px 0 50px;
             background-color: #f8f8fa;
         }
 
@@ -998,6 +1024,7 @@ box-shadow: -3px 4px 4px 0px rgba(0, 0, 0, 0.25);
         }
 
         .results-left {
+             margin-top: 100px;
             flex: 1.8;
             min-width: 300px;
             padding-right: 120px;
@@ -1840,7 +1867,7 @@ a {
 
     <nav class="navbar">
         <div class="logo">
-            <img src="edu_logo.png" alt="eduthalamus" style="height: 55px;">
+            <img src="edu_logo.jpg" alt="eduthalamus" style="height: 55px;">
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -1993,7 +2020,7 @@ line-height: 32px;">education</span>!</p>
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="edu_logo.png" alt="eduthalamus">
+                    <img src="edu_logo.jpg" alt="eduthalamus">
                 </div>
             </div>
             

@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
                 @font-face {
     font-family: 'Dessau';
-    src: url('/font/dessau.ttf') format('truetype');
+    src: url('fonts/dessau.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -149,11 +149,11 @@
             color: #2D2D96;
             text-decoration: none;
             transition: all 0.3s;
-font-family: "Open Sans";
-font-size: 12.94px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+            font-family: "Open Sans";
+            font-size: 12.94px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
         }
 
         .request-demo:hover {
@@ -163,7 +163,9 @@ line-height: normal;
 
         .hero {
             min-height: 100vh;
-            background: url('background.png') center/cover;
+            background: url('background.png');
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             padding: 0 5%;
@@ -402,16 +404,16 @@ line-height: normal;
         }
 
         .features {
-            padding-top: 100px;
-            background-color: #f8f9fa;
+            
+            background-color: #fafafa;
             min-height: 300px;
             position: relative;
-            margin-top: -90px;
+            
             z-index: 1;
         }
 
         .features-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
@@ -420,13 +422,15 @@ line-height: normal;
 
         .about {
             min-height: 600px;
-            background: url('background_2.png') center/cover;
+            background: url('background_2.png');
+            background-size: cover;
+            background-position: center;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 60px 20px 100px;
-            margin-top: -260px;
+            padding: 100px 20px 200px;
+            margin-top: -300px;
             z-index: 2;
         }
 .about-box {
@@ -435,7 +439,7 @@ line-height: normal;
     max-width: 900px;
     margin: 0 auto;
     height: 450px;
-    margin-top: 100px;
+    margin-top: 60px;
     justify-items:  center;
     align-items: center;
    
@@ -496,7 +500,7 @@ line-height: normal;
         .for-everyone h2 {
             color: #1D3557;
 text-align: center;
-font-family: Manrope;
+font-family: Open Sans;
 font-size: 36px;
 font-style: normal;
 font-weight: 700;
@@ -570,7 +574,7 @@ line-height: 24px; /* 150% */
         .user-group h3 {
             color: #1D3557;
 text-align: center;
-font-family: Manrope;
+font-family: Open Sans;
 font-size: 28px;
 font-style: normal;
 font-weight: 700;
@@ -580,8 +584,8 @@ margin-bottom: 5px;
 
         .user-group p {
     color: var(--Neutral-Grey, #717171);
-    font-family: Inter;
-    font-size: 14px;
+    font-family: Open Sans;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
@@ -1420,16 +1424,17 @@ font-style: normal;
 .slider-button {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: white;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #1e3a5f;
-    border: 1px solid #ddd;
+    border: 1px solid #1e3a5f78;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all 0.3s;
-    font-weight: 900;
+    font-weight: bolder;
     font-size: 18px;
 }
 
@@ -1564,7 +1569,7 @@ font-style: normal;
     z-index: 1000;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 .modal {
@@ -1572,9 +1577,9 @@ font-style: normal;
     background: #FFF;
     display: inline-flex;
     height: 501px;
-    padding: 50.289px 47.146px 0px 47.146px;
+    padding: 30px 47.146px 0px 47.146px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     animation: modalFadeIn 0.3s ease-out;
@@ -1601,18 +1606,18 @@ font-style: normal;
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .modal p {
     color: #000;
     text-align: center;
     font-family: "Open Sans";
-    font-size: 10.058px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%;
-    margin-bottom: 30px;
+    line-height: 10%;
+    margin-bottom: 70px;
 }
 
 .modal-close {
@@ -1812,7 +1817,7 @@ font-style: normal;
 
     <nav class="navbar">
         <div class="logo">
-            <img src="edu_logo.png" alt="eduthalamus" style="height: 55px;">
+            <img src="edu_logo.jpg" alt="eduthalamus" style="height: 55px;">
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
@@ -1832,7 +1837,7 @@ font-style: normal;
         <div class="hero">
             <div class="hero-content">
                 <h1 style="font-size: 42px;">Tired of <span>Juggling</span> Multiple Systems for School Operations?</h1>
-                <p style="font-size: 12px;">Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments.</p>
+                <p style="font-size: 16px;">Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments.</p>
                     <div class="hero-button-container">
                         <a href="#learn-more" class="hero-button">
                             <span class="button-text">Learn More</span>
@@ -1873,16 +1878,7 @@ font-style: normal;
         </div>
     </section>
 
-    <section class="clients">
-        <div class="clients-container">
-            <h2>Our Clients</h2>
-            <p>Join the growing list of schools who trust us</p>
-            <div class="logo-container">
-                <img src="client_logos.png" alt="Client Logos" class="client-logos">
-            </div>
-        </div>
-    </section>
-
+    
     <section class="features">
         <div class="features-container">
             <!-- Features content will go here -->
@@ -2240,7 +2236,7 @@ font-style: normal;
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="edu_logo.png" alt="eduthalamus">
+                    <img src="edu_logo.jpg" alt="eduthalamus">
                 </div>
             </div>
             
@@ -2342,11 +2338,11 @@ font-style: normal;
         text: 'Simplify complex educational processes with our all-in-one ERP solution—automating everything from admissions to fee management seamlessly.'
     },
     {
-        header: 'Tired of <span style="color:#E63946;font-family:dessau;font-weight:400;">Juggling</span> Multiple Systems for School Operations?',
+        header: 'Tired of <span style="color:#9F2B68;font-family:dessau;font-weight:400;">Juggling</span> Multiple Systems for School Operations?',
                 text: "Unify your institution's workflows with our comprehensive ERP system—boosting efficiency, accuracy, and data security across all departments."
     },
     {
-                header: 'Whats Holding Your Institution Back from<br>Digital <span style="color:#FFDE21;font-family:dessau;font-weight:400;">Exellence</span>?',
+                header: 'Whats Holding Your Institution Back from<br>Digital <span style="color:#097969;font-family:dessau;font-weight:400;">Excellence</span>?',
         text: "Drive innovation with a cloud-based ERP designed to enhance student management, automate tasks, and provide real-time insights."
     },
 ];
